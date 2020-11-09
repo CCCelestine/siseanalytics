@@ -1,0 +1,27 @@
+---
+title: "Introduction to siseanalytics"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{comment-utiliser-mon-package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(siseanalytics)
+```
+
+### Calculer la moyenne
+
+```{r}
+data=c(1,2,3)
+moyenne(data)
+```
+
