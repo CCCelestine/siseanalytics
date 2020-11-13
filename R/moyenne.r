@@ -12,4 +12,5 @@
 moyenne <- function(x){
   x <- x %>% na.omit()
   sum(x)/length(x)
+  #test
 }
