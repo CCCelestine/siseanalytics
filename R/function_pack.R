@@ -1,14 +1,13 @@
-############## Création des fonctions ##############
-
 #' Création de l'objet "metrics" a partir de deux df contenant les valeurs prédites et réels
 #'
-#' @param valreel
-#' @param valpred
+#' @param valreel Un dataframe contenant les classes réels
+#' @param valpred Un dataframe contenant les classes prédites par un clustering
 #'
-#' @return
+#' @return Un objet de la classe metrics
 #' @export
 #'
 #' @examples
+#' Obj2c <- EvalMetrics(val_reel_22,val_pred_22)
 EvalMetrics <- function(valreel,valpred){
   #Création des variables pour la construction de notre class
   valpred <- as.factor(valpred)
@@ -86,12 +85,13 @@ EvalMetrics <- function(valreel,valpred){
 
 #' Surcharge de print pour l'affichage de l'objet "metrics"
 #'
-#' @param obj
+#' @param obj La fonction print affichera la matrice de confusion et les indicateurs lorsque elle recoit un paramètre de type metrics
 #'
 #' @return
 #' @export
 #'
 #' @examples
+#' print(Obj2c)
 print.metrics <- function(obj){
   print("Matrice de confusion et indincateurs")
   print(obj$mc)
@@ -101,13 +101,14 @@ print.metrics <- function(obj){
 
 #' Fonction qui permet de comparer le resultat de deux clustering
 #'
-#' @param object1
-#' @param object2
+#' @param object1 Le premier objet suite à un premier clustering
+#' @param object2 Le second objet suite à un premier clustering
 #'
 #' @return
 #' @export
 #'
 #' @examples
+#' compareRes(Obj2c,Obj2c_bis)
 compareRes <- function(object1,object2){
   if (object1$nbclasse != object2$nbclasse){stop("Les deux objets n'ont pas le même nombre de classe")}
   if(object1$nbclasse == 2){
@@ -137,14 +138,16 @@ compareRes <- function(object1,object2){
 
 #' Graphique resultat kmeans couplé acp
 #'
-#' @param vars
-#' @param reel
-#' @param resKM
+#' @param vars DataFrame contenant les variables quantitatives
+#' @param reel DataFrame contenant les variables quantitatives
+#' @param resKM Resultats d'un clustering
 #'
 #' @return
 #' @export
 #'
 #' @examples
+#' res.km <- kmeans(scale(vals_quanti_com), 3, nstart = 25)
+#' acpGraph(vals_quanti_com,val_reel_com,res.km)
 acpGraph <- function(vars,reel,resKM){
 
   res.pca <- prcomp(vars,  scale = TRUE)
@@ -166,12 +169,13 @@ acpGraph <- function(vars,reel,resKM){
 
 #' Graphique Matrice de confusion
 #'
-#' @param objet
+#' @param objet #Variable de type metrics
 #'
 #' @return
 #' @export
 #'
 #' @examples
+#' ggMatConf(Obj2c)
 ggMatConf <- function(objet){
 
   table <- data.frame(objet$mc)
