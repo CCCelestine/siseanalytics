@@ -7,7 +7,9 @@
 compareRes(object1, object2)
 }
 \arguments{
-\item{object2}{}
+\item{object1}{Le premier objet suite à un premier clustering}
+
+\item{object2}{Le second objet suite à un premier clustering}
 }
 \value{
 

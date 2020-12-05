@@ -7,10 +7,12 @@
 EvalMetrics(valreel, valpred)
 }
 \arguments{
-\item{valpred}{}
+\item{valreel}{Un dataframe contenant les classes réels}
+
+\item{valpred}{Un dataframe contenant les classes prédites par un clustering}
 }
 \value{
-
+Un objet de la classe metrics
 }
 \description{
 Création de l'objet "metrics" a partir de deux df contenant les valeurs prédites et réels

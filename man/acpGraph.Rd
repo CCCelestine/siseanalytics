@@ -7,7 +7,11 @@
 acpGraph(vars, reel, resKM)
 }
 \arguments{
-\item{resKM}{}
+\item{vars}{DataFrame contenant les variables quantitatives}
+
+\item{reel}{DataFrame contenant les variables quantitatives}
+
+\item{resKM}{Resultats d'un clustering}
 }
 \value{
 

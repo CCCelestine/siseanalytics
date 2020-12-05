@@ -7,7 +7,7 @@
 ggMatConf(objet)
 }
 \arguments{
-\item{objet}{}
+\item{objet}{#Variable de type metrics}
 }
 \value{
 

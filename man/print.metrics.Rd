@@ -7,7 +7,7 @@
 \method{print}{metrics}(obj)
 }
 \arguments{
-\item{obj}{}
+\item{obj}{La fonction print affichera la matrice de confusion et les indicateurs lorsque elle recoit un paramètre de type metrics}
 }
 \value{
 

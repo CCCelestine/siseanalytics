@@ -7,7 +7,6 @@
 #' @export
 #'
 #' @examples
-#' Obj2c <- EvalMetrics(val_reel_22,val_pred_22)
 EvalMetrics <- function(valreel,valpred){
   #Création des variables pour la construction de notre class
   valpred <- as.factor(valpred)
@@ -91,7 +90,6 @@ EvalMetrics <- function(valreel,valpred){
 #' @export
 #'
 #' @examples
-#' print(Obj2c)
 print.metrics <- function(obj){
   print("Matrice de confusion et indincateurs")
   print(obj$mc)
@@ -108,7 +106,6 @@ print.metrics <- function(obj){
 #' @export
 #'
 #' @examples
-#' compareRes(Obj2c,Obj2c_bis)
 compareRes <- function(object1,object2){
   if (object1$nbclasse != object2$nbclasse){stop("Les deux objets n'ont pas le même nombre de classe")}
   if(object1$nbclasse == 2){
@@ -146,8 +143,6 @@ compareRes <- function(object1,object2){
 #' @export
 #'
 #' @examples
-#' res.km <- kmeans(scale(vals_quanti_com), 3, nstart = 25)
-#' acpGraph(vals_quanti_com,val_reel_com,res.km)
 acpGraph <- function(vars,reel,resKM){
 
   res.pca <- prcomp(vars,  scale = TRUE)
@@ -175,7 +170,6 @@ acpGraph <- function(vars,reel,resKM){
 #' @export
 #'
 #' @examples
-#' ggMatConf(Obj2c)
 ggMatConf <- function(objet){
 
   table <- data.frame(objet$mc)
