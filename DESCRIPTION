@@ -26,4 +26,12 @@ Suggests:
 VignetteBuilder: knitr
 Imports: 
     stats,
-    magrittr
+    magrittr,
+    methods,
+    tidyverse,
+    FactoMineR,
+    factoextra,
+    ggpubr,
+    ggplot2,
+    dplyr,
+    readxl
