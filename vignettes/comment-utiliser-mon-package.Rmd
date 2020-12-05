@@ -18,10 +18,4 @@ knitr::opts_chunk$set(
 library(siseanalytics)
 ```
 
-### Calculer la moyenne
-
-```{r}
-data=c(1,2,3)
-moyenne(data)
-```
 

@@ -1,11 +1,3 @@
-library(tidyverse)
-library(FactoMineR)
-library(factoextra)
-library(ggpubr)
-library(ggplot2)
-library(dplyr)
-library(readxl)
-
 ############## Création des fonctions ##############
 
 #' Création de l'objet "metrics" a partir de deux df contenant les valeurs prédites et réels
