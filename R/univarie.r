@@ -138,7 +138,7 @@ boxplot <- function (df, x, y){
 #' @export
 #'
 #' @examples
-vt.quali<-function(x,k,y){
+.vt.quali<-function(x,k,y){
   #transtypage chaine de caracteres
   x=as.character(x)
   #creation d'un dataframe
@@ -188,7 +188,7 @@ vt.quali<-function(x,k,y){
 #' @export
 #'
 #' @examples
-vt.quanti<-function(x,k,y){
+.vt.quanti<-function(x,k,y){
   #creation d'un dataframe
   df=as.data.frame(cbind(x,y))
   #moyenne de la population
