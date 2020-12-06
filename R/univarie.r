@@ -9,7 +9,7 @@
 #' @export
 #'
 #' @examples
-barplot.YX <- function (df, x, y){
+barplotYX <- function (df, x, y){
   ggplot(df, aes_string(x = x, fill = y)) +
     geom_bar() +
     ggtitle("Effectifs de Y en fonction de X") +
@@ -28,7 +28,7 @@ barplot.YX <- function (df, x, y){
 #' @export
 #'
 #' @examples
-barplot.XY <- function (df, x, y){
+barplotXY <- function (df, x, y){
   ggplot(df, aes_string(x = y, fill = x)) +
     geom_bar(position=position_dodge()) +
     ggtitle("Effectifs de X en fonction de Y") +
@@ -42,6 +42,7 @@ barplot.XY <- function (df, x, y){
 #' @param y variable classe d'appartenance
 #'
 #' @return
+#' @importFrom stats chisq.test
 #' @export
 #'
 #' @examples
@@ -79,6 +80,7 @@ vcramer<-function(x,y){
 #' @param y variable classe d'appartenance
 #'
 #' @return
+#' @importFrom stats aov
 #' @export
 #'
 #' @examples
