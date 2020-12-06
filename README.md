@@ -26,13 +26,34 @@ library(devtools)
 install_github("CCCelestine/siseanalytics")
 library(siseanalytics)
 ```
-## Univariate characterization of clusters
+## Univariate characterization
 
 ### Characterization of the partition
 
 In this part, we assess how each variable contributes to the constitution of the partition.  
 First of all, we will see the case of **qualitative variables**.  
 
+```{r}
+barplotYX(data_bis, "sexe", "val_pred")
+barplotXY(data_bis, "sexe", "val_pred")
+khi2(data_bis$sexe,data_bis$val_pred)
+vcramer(data_bis$sexe,data_bis$val_pred)
+```
+
+Next, we will approach the case of **quantitative variables**.  
+
+```{r}
+boxplot(fromage2, "groupes.cah", "calories")
+tab.quanti(fromage,groupes.cah)
+```
+
+### Characterization of the clusters
+
+We will now compare the clusters with each other.
+
+```{r}
+resCluster(data,val_pred,"grand")
+```
 
 ## Evaluation metrics
 
