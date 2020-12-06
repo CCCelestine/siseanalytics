@@ -7,6 +7,7 @@
 #' @param y
 #'
 #' @return
+#' @import questionr
 #' @export
 #'
 #' @examples
