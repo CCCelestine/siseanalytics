@@ -2,16 +2,20 @@
 % Please edit documentation in R/univarie.r
 \name{boxplot}
 \alias{boxplot}
-\title{Title}
+\title{Boxplot}
 \usage{
 boxplot(df, x, y)
 }
 \arguments{
-\item{y}{}
+\item{df}{variables explicatives + classes}
+
+\item{x}{nom var quanti}
+
+\item{y}{nom var classe}
 }
 \value{
 
 }
 \description{
-Title
+Boxplot
 }

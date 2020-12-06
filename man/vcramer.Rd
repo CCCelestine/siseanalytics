@@ -2,16 +2,18 @@
 % Please edit documentation in R/univarie.r
 \name{vcramer}
 \alias{vcramer}
-\title{Title}
+\title{V de Cramer}
 \usage{
 vcramer(x, y)
 }
 \arguments{
-\item{y}{}
+\item{x}{variable qualitative}
+
+\item{y}{variable classe d'appartenance}
 }
 \value{
 
 }
 \description{
-Title
+V de Cramer
 }

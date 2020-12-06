@@ -1,14 +1,8 @@
-#CARACTERISATION UNIVARIE
-#caracterisation de la partition
-#graphiques entre une variable explicative numérique et la variable classe d'appartenance
-#df = dataframe contenant la variable numérique et la variable classe d'appartenance
-#x = nom de la variable numérique
-#y = nom de la variable classe d'appartenance
-#' Title
+#' Diagramme à barres Y en fonction de X
 #'
-#' @param df
-#' @param x
-#' @param y
+#' @param df dataframe contenant la variable numerique et la variable classe d'appartenance
+#' @param x nom de la variable numerique
+#' @param y nom de la variable classe d'appartenance
 #'
 #' @return
 #' @import ggplot2
@@ -23,11 +17,11 @@ barplot.YX <- function (df, x, y){
     ylab("Effectifs")
 }
 
-#' Title
+#' Diagramme à barres X en fonction de Y
 #'
-#' @param df
-#' @param x
-#' @param y
+#' @param df dataframe contenant la variable numerique et la variable classe d'appartenance
+#' @param x nom de la variable numerique
+#' @param y nom de la variable classe d'appartenance
 #'
 #' @return
 #' @import ggplot2
@@ -42,13 +36,10 @@ barplot.XY <- function (df, x, y){
     ylab("Effectifs")
 }
 
-#Test du khi deux
-#x = variable qualitative
-#y = variable classe d'appartenance
-#' Title
+#' Test du khi deux
 #'
-#' @param x
-#' @param y
+#' @param x variable qualitative
+#' @param y variable classe d'appartenance
 #'
 #' @return
 #' @export
@@ -58,18 +49,15 @@ khi2<-function(x,y){
   #tableau de contingence
   tableau=table(x,y)
   #khi deux d'independance
-  #si p-value < 0.05 les vars sont dépendantes
+  #si p-value < 0.05 les vars sont dependantes
   res=chisq.test(tableau)
   return(res)
 }
 
-#V de Cramer
-#x = variable qualitative
-#y = variable classe d'appartenance
-#' Title
+#' V de Cramer
 #'
-#' @param x
-#' @param y
+#' @param x variable qualitative
+#' @param y variable classe d'appartenance
 #'
 #' @return
 #' @import questionr
@@ -85,17 +73,10 @@ vcramer<-function(x,y){
   return(res)
 }
 
-
-#var quanti
-#tableau moyennes conditionnelles et eta
-#eta indique la proportion de variance de X expliquée par les
-#groupes (0 < eta < 1). On peut l'interpréter (avec beaucoup de
-#prudence) comme le pouvoir discriminant de la variable.
-#X=une ou plusieurs vars quanti ; y=classes
-#' Title
+#' Tableau des moyennes conditionnelles et % de variance expliquée
 #'
-#' @param X
-#' @param y
+#' @param X une ou plusieurs vars quantitatives
+#' @param y variable classe d'appartenance
 #'
 #' @return
 #' @export
@@ -112,7 +93,7 @@ tab.quanti<-function(X,y){
   }
   #initialisation
   eta=c()
-  #calcul la proportion de variance de X expliquée par les groupes
+  #calcul la proportion de variance de X expliquee par les groupes
   for(i in 1:nc){
     #recuperation des calculs de l'anova
     modele=aov(X[,i]~y)
@@ -122,21 +103,18 @@ tab.quanti<-function(X,y){
     #calcul de eta
     eta[i]=(sce/sct)*100
   }
-  #réunion des moyennes conditionnelles et de eta
+  #reunion des moyennes conditionnelles et de eta
   res=cbind(m,eta)
   #nommage des lignes
   rownames(res)=colnames(X)
   return(res)
 }
 
-#graphique
-#boxplot
-#df=variables explicatives + classes ; x=nom var quanti ; y=nom var classe
-#' Title
+#' Boxplot
 #'
-#' @param df
-#' @param x
-#' @param y
+#' @param df variables explicatives + classes
+#' @param x nom var quanti
+#' @param y nom var classe
 #'
 #' @return
 #' @import ggplot2
@@ -148,18 +126,11 @@ boxplot <- function (df, x, y){
     geom_boxplot(outlier.colour="red")
 }
 
-
-#caracterisation des groupes
-#variable qualitative
-#calcul de la valeur test
-#pour une variable et un groupe donné
-#va renvoyer une valeur test pour chaque modalité de X
-#x = variable qualitative, k = cluster choisi , y = variable classe d'appartenance
-#' Title
+#' Caractérisation d'un groupe avec une variable qualitative
 #'
-#' @param x
-#' @param k
-#' @param y
+#' @param x variable qualitative
+#' @param k cluster choisi
+#' @param y variable classe d'appartenance
 #'
 #' @return
 #' @export
@@ -168,7 +139,7 @@ boxplot <- function (df, x, y){
 vt.quali<-function(x,k,y){
   #transtypage chaine de caracteres
   x=as.character(x)
-  #création d'un dataframe
+  #creation d'un dataframe
   df=as.data.frame(cbind(x,y))
   #nb de lignes du dataframe
   n=nrow(df)
@@ -176,9 +147,9 @@ vt.quali<-function(x,k,y){
   g=df[df$y==k,]
   #nb de lignes de g
   ng=nrow(g)
-  #modalités de x
+  #modalites de x
   val=unique(x)
-  #nombre de modalités de x
+  #nombre de modalites de x
   nb=length(val)
   #initialisation
   vt=c()
@@ -186,11 +157,11 @@ vt.quali<-function(x,k,y){
   pl=c()
   plg_affichage=c()
   pl_affichage=c()
-  #calcul de plg, pl et vt pour chaque modalité
+  #calcul de plg, pl et vt pour chaque modalite
   for(i in 1:nb){
-    #fréquence de la modalité dans le groupe
+    #frequence de la modalite dans le groupe
     plg[i]=nrow(g[g$x==val[i],])/nrow(g)
-    #fréquence de la modalité dans la population
+    #frequence de la modalite dans la population
     pl[i]=nrow(df[df$x==val[i],])/nrow(df)
     #valeur test
     vt[i]=sqrt(ng)*(plg[i]-pl[i])/sqrt(((n-ng)/(n-1))*pl[i]*(1-pl[i]))
@@ -198,29 +169,25 @@ vt.quali<-function(x,k,y){
     plg_affichage[i]=plg[i]*100
     pl_affichage[i]=pl[i]*100
   }
-  #réunion des trois valeurs
+  #reunion des trois valeurs
   res=cbind(vt,pl_affichage,plg_affichage)
   #nommage des lignes
   rownames(res)=val
   return(res)
 }
 
-#variable quantitative
-#calcul de la valeur test
-#pour une seule variable et un groupe donné
-#x = variable quantitative, k = cluster choisi , y = variable classe d'appartenance
-#' Title
+#' Caractérisation d'un groupe avec une variable quantitative
 #'
-#' @param x
-#' @param k
-#' @param y
+#' @param x variable quantitative
+#' @param k cluster choisi
+#' @param y variable classe d'appartenance
 #'
 #' @return
 #' @export
 #'
 #' @examples
 vt.quanti<-function(x,k,y){
-  #création d'un dataframe
+  #creation d'un dataframe
   df=as.data.frame(cbind(x,y))
   #moyenne de la population
   xb=mean(x)
@@ -239,13 +206,11 @@ vt.quanti<-function(x,k,y){
   return(res)
 }
 
-#afficher pour chaque cluster, la vt, la m par groupe et la m au total par variable
-#X = toutes les vars, k = cluster choisi , y = variables classe d'appartenance
-#' Title
+#' Caractérisation d'un groupe choisi
 #'
-#' @param X
-#' @param y
-#' @param k
+#' @param X toutes les vars
+#' @param y cluster choisi
+#' @param k variables classe d'appartenance
 #'
 #' @return
 #' @export
@@ -290,7 +255,7 @@ resCluster<-function(X,y,k){
   grp_quanti=sapply(g_quanti,mean)
   #calcul de la valeur test
   vt_quanti=sapply(df_quanti[,-n_quanti],vt.quanti,k=k,y=y)
-  #réunion de moyenne globale, moyenne groupe et valeur test
+  #reunion de moyenne globale, moyenne groupe et valeur test
   m_quanti=rbind(vt_quanti,grp_quanti,overall)
   #transposition de la matrice
   m_quanti=t(m_quanti)
@@ -314,7 +279,7 @@ resCluster<-function(X,y,k){
   nn=length(all_quali)
   #initialisation
   res=c()
-  #pour chaque variable on ajoute son nom au rownames a coté de la modalité
+  #pour chaque variable on ajoute son nom au rownames a cote de la modalite
   #exemple : homme devient sexe$homme
   for(i in 1:nn){
     nom=names(all_quali)[i]
@@ -343,22 +308,21 @@ resCluster<-function(X,y,k){
   instance$resQuali <- m_quali
   instance$prop <- prop
 
-  #on donne un nom à la classe
+  #on donne un nom a la classe
   class(instance) <- "cluster"
   return(instance)
 }
 
-#Surcharge de print pour l'affichage de l'objet "cluster"
-#' Title
+#' Surcharge de print pour l'affichage de l'objet "cluster"
 #'
-#' @param obj
+#' @param obj instance de la classe cluster
 #'
 #' @return
 #' @export
 #'
 #' @examples
 print.cluster <- function(obj){
-  print(paste("Caractérisation du cluster k =",obj$nomCluster))
+  print(paste("Caracterisation du cluster k =",obj$nomCluster))
   print(paste(obj$prop,"% de la population"))
   print("Variables quantitatives")
   print(obj$resQuanti)

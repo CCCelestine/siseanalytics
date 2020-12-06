@@ -2,16 +2,20 @@
 % Please edit documentation in R/univarie.r
 \name{vt.quali}
 \alias{vt.quali}
-\title{Title}
+\title{Caractérisation d'un groupe avec une variable qualitative}
 \usage{
 vt.quali(x, k, y)
 }
 \arguments{
-\item{y}{}
+\item{x}{variable qualitative}
+
+\item{k}{cluster choisi}
+
+\item{y}{variable classe d'appartenance}
 }
 \value{
 
 }
 \description{
-Title
+Caractérisation d'un groupe avec une variable qualitative
 }

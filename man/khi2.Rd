@@ -2,16 +2,18 @@
 % Please edit documentation in R/univarie.r
 \name{khi2}
 \alias{khi2}
-\title{Title}
+\title{Test du khi deux}
 \usage{
 khi2(x, y)
 }
 \arguments{
-\item{y}{}
+\item{x}{variable qualitative}
+
+\item{y}{variable classe d'appartenance}
 }
 \value{
 
 }
 \description{
-Title
+Test du khi deux
 }

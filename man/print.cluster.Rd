@@ -2,16 +2,16 @@
 % Please edit documentation in R/univarie.r
 \name{print.cluster}
 \alias{print.cluster}
-\title{Title}
+\title{Surcharge de print pour l'affichage de l'objet "cluster"}
 \usage{
 \method{print}{cluster}(obj)
 }
 \arguments{
-\item{obj}{}
+\item{obj}{instance de la classe cluster}
 }
 \value{
 
 }
 \description{
-Title
+Surcharge de print pour l'affichage de l'objet "cluster"
 }

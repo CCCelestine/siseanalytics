@@ -2,16 +2,20 @@
 % Please edit documentation in R/univarie.r
 \name{barplot.YX}
 \alias{barplot.YX}
-\title{Title}
+\title{Diagramme à barres Y en fonction de X}
 \usage{
 \method{barplot}{YX}(df, x, y)
 }
 \arguments{
-\item{y}{}
+\item{df}{dataframe contenant la variable numerique et la variable classe d'appartenance}
+
+\item{x}{nom de la variable numerique}
+
+\item{y}{nom de la variable classe d'appartenance}
 }
 \value{
 
 }
 \description{
-Title
+Diagramme à barres Y en fonction de X
 }

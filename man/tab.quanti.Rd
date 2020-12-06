@@ -2,16 +2,18 @@
 % Please edit documentation in R/univarie.r
 \name{tab.quanti}
 \alias{tab.quanti}
-\title{Title}
+\title{Tableau des moyennes conditionnelles et \% de variance expliquée}
 \usage{
 tab.quanti(X, y)
 }
 \arguments{
-\item{y}{}
+\item{X}{une ou plusieurs vars quantitatives}
+
+\item{y}{variable classe d'appartenance}
 }
 \value{
 
 }
 \description{
-Title
+Tableau des moyennes conditionnelles et \% de variance expliquée
 }
