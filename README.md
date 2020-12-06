@@ -26,6 +26,12 @@ library(devtools)
 install_github("CCCelestine/siseanalytics")
 library(siseanalytics)
 ```
+## Univariate characterization of clusters
+
+### Characterization of the partition
+
+In this part, we assess how each variable contributes to the constitution of the partition.
+First of all, we will see the case of qualitative variables.
 
 
 ## Evaluation metrics
