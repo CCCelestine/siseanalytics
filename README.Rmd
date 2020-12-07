@@ -90,6 +90,7 @@ Here we will compare the size of people in our three clusters.
 
 ```{r}
 boxplot(df_test, "val_pred", "taille")
+
 ```
 
 In this table, we find the means by variable and by cluster, called the conditional means. The eta indicator indicates the proportion of variance explained by the clusters.
