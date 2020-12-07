@@ -59,10 +59,10 @@ In this part, we assess how each variable contributes to the
 constitution of the partition.  
 First of all, we will see the case of **qualitative variables**.  
 Barplot is a graph that shows categorical variables with rectangular
-bars with heights or lengths proportional to the values they
-represent. We can see in this first graph how the numbers of our
-categorical variable (here the sex) are distributed among the clusters
-(here small / medium / large).
+bars with heights or lengths proportional to the values they represent.
+We can see in this first graph how the numbers of our categorical
+variable (here the sex) are distributed among the clusters (here small /
+medium / large).
 
 ``` r
 barplotYX(df_test, "sexe", "val_pred")
@@ -161,6 +161,16 @@ tab.quanti(data_quanti,df_test$val_pred)
 
 We will now compare the clusters with each other.
 
+The resCluster () function displays a summary of the different
+indicators for a cluster. First, there is the proportion of individuals
+who are part of this cluster among all individuals. Then, there are two
+tables : one for the quantitative variables and one for the qualitative
+variables. The first compares the mean of a variable for a cluster and
+the overall mean, while the other compares the proportion of a variable
+in a cluster and the proportion in the overall population. Both tables
+have another indicator : the test value. It makes it possible to
+distinguish the important variables in the interpretation of clusters.
+
 ``` r
 data=as.data.frame(df_test[,-c(1,2)])
 resCluster(data,df_test$val_pred,"grand")
@@ -192,8 +202,8 @@ resCluster(data,df_test$val_pred,"grand")
 ### Creating the metrics object
 
 We create 3 objects using the EvalMetrics function. This function takes
-as input dataframe containing the real values and the values
-predicted by a clustering.
+as input dataframe containing the real values and the values predicted
+by a clustering.
 
 ``` r
 Obj2c <- EvalMetrics(pred_reel_2c$val_reel,pred_reel_2c$val_pred)
