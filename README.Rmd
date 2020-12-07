@@ -22,6 +22,9 @@ In this tutorial we will see the concrete functionality of the package
     - Comparaison of clustering results
 
 * Univariate characterization
+    - Characterization of the partition
+    - Characterization of clusters
+
 * Multivariate characterization
 
 
@@ -36,32 +39,62 @@ library(devtools)
 #install_github("CCCelestine/siseanalytics")
 library(siseanalytics)
 
+```
+
+Access to datasets :
+
+```{r}
 data(df_test) # data frame test 357 rows and 8 variables
 data(pred_reel_3c) # predicted and real values 3 class 
 data(pred_reel_2c) # predicted and real values 2 class 
 data(pred_reel_2c_bis) # predicted and real values 2 class 
 
 ```
+
 ## Univariate characterization
 
 ### Characterization of the partition
 
 In this part, we assess how each variable contributes to the constitution of the partition.  
 First of all, we will see the case of **qualitative variables**.  
-
+Barplot is a graph that shows categorical variables with rectangular bars with heights or lengths proportional to the values they represent.
+We can see in this first graph how the numbers of our categorical variable (here the sex) are distributed among the clusters (here small / medium / large).
 ```{r}
 barplotYX(df_test, "sexe", "val_pred")
+```
+In this second barplot, we can see how the numbers of clusters are distributed among the categories of the categorical variable.
+
+```{r}
 barplotXY(df_test, "sexe", "val_pred")
-khi2(df_test$sexe,df_test$val_pred)
-vcramer(df_test$sexe,df_test$val_pred)
+```
+
+Since we are in the presence of two categorical variables (the cluster variable is one), we can create a contingency table between both. This table provides a first approach to the composition of clusters.
+tab.quanti.line() and tab.quanti.col() functions are used to display the contingency tables in percentage. The calculation of the proportions is made either in rows or in columns.
+
+```{r}
 tab.quali.ligne(df_test$val_pred,df_test$sexe)
 tab.quali.col(df_test$val_pred,df_test$sexe)
 ```
 
+We can also perform a Chi-Square Independence Test as well as calculate Cramer's V, which is a measure derived from Chi-Square. These results allow us to know if the two variables are related. Regarding Chi-square, the p-value must be less than alpha (often 5%) to be able to affirm that the variables are dependent. As for Cramer's V, 0 means no liaison and 1 means perfect liaison.
+
+```{r}
+khi2(df_test$sexe,df_test$val_pred)
+vcramer(df_test$sexe,df_test$val_pred)
+```
+
 Next, we will approach the case of **quantitative variables**.  
+
+The boxplot summarizes indicators of the position of the studied variable (median, quartiles, minimum, maximum or deciles). This plot is mainly used to compare the same variable in several populations.
+Here we will compare the size of people in our three clusters.
 
 ```{r}
 boxplot(df_test, "val_pred", "taille")
+```
+
+In this table, we find the means by variable and by cluster, called the conditional means. The eta indicator indicates the proportion of variance explained by the clusters.
+
+```{r}
 df_test=as.data.frame(df_test)
 data_quanti=df_test[,3:5]
 tab.quanti(data_quanti,df_test$val_pred)
@@ -70,6 +103,9 @@ tab.quanti(data_quanti,df_test$val_pred)
 ### Characterization of the clusters
 
 We will now compare the clusters with each other.
+
+The resCluster () function displays a summary of the different indicators for a cluster. First, there is the proportion of individuals who are part of this cluster among all individuals. Then, there are two tables : one for the quantitative variables and one for the qualitative variables.
+The first compares the mean of a variable for a cluster and the overall mean, while the other compares the proportion of a variable in a cluster and the proportion in the overall population. Both tables have another indicator : the test value. It makes it possible to distinguish the important variables in the interpretation of clusters.
 
 ```{r}
 data=as.data.frame(df_test[,-c(1,2)])
@@ -80,7 +116,7 @@ resCluster(data,df_test$val_pred,"grand")
 
 ### Creating the metrics object
 
-We create 3 objects using the EvalMetrics function. This function takes as input dataframe containing the real values and the values predicted by a clustering.
+We create 3 objects using the EvalMetrics function. This function takes as input dataframe containing the real values and the values predicted by a clustering.
 
 ```{r}
 Obj2c <- EvalMetrics(pred_reel_2c$val_reel,pred_reel_2c$val_pred)

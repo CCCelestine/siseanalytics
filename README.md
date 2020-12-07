@@ -15,6 +15,8 @@ In this tutorial we will see the concrete functionality of the package
       - Performance indicators
       - Comparaison of clustering results
   - Univariate characterization
+      - Characterization of the partition
+      - Characterization of clusters
   - Multivariate characterization
 
 ## Installation
@@ -40,6 +42,8 @@ library(siseanalytics)
     ## 
     ##     boxplot
 
+Access to datasets :
+
 ``` r
 data(df_test) # data frame test 357 rows and 8 variables
 data(pred_reel_3c) # predicted and real values 3 class 
@@ -53,35 +57,33 @@ data(pred_reel_2c_bis) # predicted and real values 2 class
 
 In this part, we assess how each variable contributes to the
 constitution of the partition.  
-First of all, we will see the case of **qualitative variables**.
+First of all, we will see the case of **qualitative variables**.  
+Barplot is a graph that shows categorical variables with rectangular
+bars with heights or lengths proportional to the values they
+represent. We can see in this first graph how the numbers of our
+categorical variable (here the sex) are distributed among the clusters
+(here small / medium / large).
 
 ``` r
 barplotYX(df_test, "sexe", "val_pred")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- --> In this
+second barplot, we can see how the numbers of clusters are distributed
+among the categories of the categorical variable.
 
 ``` r
 barplotXY(df_test, "sexe", "val_pred")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-2-2.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
-``` r
-khi2(df_test$sexe,df_test$val_pred)
-```
-
-    ## 
-    ##  Pearson's Chi-squared test
-    ## 
-    ## data:  tableau
-    ## X-squared = 427.85, df = 4, p-value < 2.2e-16
-
-``` r
-vcramer(df_test$sexe,df_test$val_pred)
-```
-
-    ## [1] 0.774098
+Since we are in the presence of two categorical variables (the cluster
+variable is one), we can create a contingency table between both. This
+table provides a first approach to the composition of clusters.
+tab.quanti.line() and tab.quanti.col() functions are used to display the
+contingency tables in percentage. The calculation of the proportions is
+made either in rows or in columns.
 
 ``` r
 tab.quali.ligne(df_test$val_pred,df_test$sexe)
@@ -104,13 +106,45 @@ tab.quali.col(df_test$val_pred,df_test$sexe)
     ## Total      1.00000000   1.00000000   1.00000000   1.0000000
     ## Effectif 120.00000000 119.00000000 118.00000000 357.0000000
 
+We can also perform a Chi-Square Independence Test as well as calculate
+Cramer’s V, which is a measure derived from Chi-Square. These results
+allow us to know if the two variables are related. Regarding Chi-square,
+the p-value must be less than alpha (often 5%) to be able to affirm that
+the variables are dependent. As for Cramer’s V, 0 means no liaison and 1
+means perfect liaison.
+
+``` r
+khi2(df_test$sexe,df_test$val_pred)
+```
+
+    ## 
+    ##  Pearson's Chi-squared test
+    ## 
+    ## data:  tableau
+    ## X-squared = 427.85, df = 4, p-value < 2.2e-16
+
+``` r
+vcramer(df_test$sexe,df_test$val_pred)
+```
+
+    ## [1] 0.774098
+
 Next, we will approach the case of **quantitative variables**.
+
+The boxplot summarizes indicators of the position of the studied
+variable (median, quartiles, minimum, maximum or deciles). This plot is
+mainly used to compare the same variable in several populations. Here we
+will compare the size of people in our three clusters.
 
 ``` r
 boxplot(df_test, "val_pred", "taille")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+
+In this table, we find the means by variable and by cluster, called the
+conditional means. The eta indicator indicates the proportion of
+variance explained by the clusters.
 
 ``` r
 df_test=as.data.frame(df_test)
@@ -173,13 +207,13 @@ ggMatconf function display the confusion matrix under a ggplot graph
 ggMatConf(Obj2c)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
 ``` r
 ggMatConf(Obj3c)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-6-2.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-11-2.png)<!-- -->
 
 Thanks to the overload of the print method we can display the different
 attributes of our object.
@@ -245,6 +279,6 @@ compare two clustering results stored in two different objects
 compareRes(Obj2c,Obj2c_bis)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
 
 The output will be a ggplot chart confronting the indicators
