@@ -74,6 +74,27 @@ vcramer<-function(x,y){
   return(res)
 }
 
+
+#' Tableau des profils pour une variable qualitative
+#'
+#' @param y variable classe d'appartenance
+#' @param x variable qualitative
+#'
+#' @return
+#' @export
+#'
+#' @examples
+tab.quali<-function(y,x){
+  #tableau de contingence
+  tableau=table(data_bis$val_pred,data_bis$sexe)
+  #calcul des proportions, ajout des colonnes total et effectif
+  tabligne=cbind(addmargins(prop.table(addmargins(tableau,1),1),2), c(margin.table(tableau,1),sum(tableau)))
+  #nommage avec colonnes
+  colnames(tabligne)<-c(colnames(tableau),"Total","Effectif")
+  return(tabligne)
+}
+
+
 #' Tableau des moyennes conditionnelles et % de variance expliquée
 #'
 #' @param X une ou plusieurs vars quantitatives
