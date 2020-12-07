@@ -54,7 +54,8 @@ barplotYX(df_test, "sexe", "val_pred")
 barplotXY(df_test, "sexe", "val_pred")
 khi2(df_test$sexe,df_test$val_pred)
 vcramer(df_test$sexe,df_test$val_pred)
-tab.quali(df_test$val_pred,df_test$sexe)
+tab.quali.ligne(df_test$val_pred,df_test$sexe)
+tab.quali.col(df_test$val_pred,df_test$sexe)
 ```
 
 Next, we will approach the case of **quantitative variables**.  

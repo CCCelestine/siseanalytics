@@ -84,7 +84,7 @@ vcramer(df_test$sexe,df_test$val_pred)
     ## [1] 0.774098
 
 ``` r
-tab.quali(df_test$val_pred,df_test$sexe)
+tab.quali.ligne(df_test$val_pred,df_test$sexe)
 ```
 
     ##            grand      moyen      petit Total Effectif
@@ -92,6 +92,17 @@ tab.quali(df_test$val_pred,df_test$sexe)
     ## Femme 0.00000000 0.01724138 0.98275862     1      116
     ## homme 0.64804469 0.32960894 0.02234637     1      179
     ## Sum   0.33613445 0.33333333 0.33053221     1      357
+
+``` r
+tab.quali.col(df_test$val_pred,df_test$sexe)
+```
+
+    ##                 grand        moyen        petit         Sum
+    ## femme      0.03333333   0.48739496   0.00000000   0.1736695
+    ## Femme      0.00000000   0.01680672   0.96610169   0.3249300
+    ## homme      0.96666667   0.49579832   0.03389831   0.5014006
+    ## Total      1.00000000   1.00000000   1.00000000   1.0000000
+    ## Effectif 120.00000000 119.00000000 118.00000000 357.0000000
 
 Next, we will approach the case of **quantitative variables**.
 

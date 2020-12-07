@@ -75,7 +75,7 @@ vcramer<-function(x,y){
 }
 
 
-#' Tableau des profils pour une variable qualitative
+#' Tableau des profils ligne pour une variable qualitative
 #'
 #' @param y variable classe d'appartenance
 #' @param x variable qualitative
@@ -84,14 +84,33 @@ vcramer<-function(x,y){
 #' @export
 #'
 #' @examples
-tab.quali<-function(x,y){
+tab.quali.ligne<-function(x,y){
   #tableau de contingence
   tableau=table(y,x)
-  #calcul des proportions, ajout des colonnes total et effectif
+  #calcul des proportions par ligne, ajout des colonnes total et effectif
   tabligne=cbind(addmargins(prop.table(addmargins(tableau,1),1),2), c(margin.table(tableau,1),sum(tableau)))
   #nommage avec colonnes
   colnames(tabligne)<-c(colnames(tableau),"Total","Effectif")
   return(tabligne)
+}
+
+#' Tableau des profils colonnes ligne pour une variable qualitative
+#'
+#' @param y variable classe d'appartenance
+#' @param x variable qualitative
+#'
+#' @return
+#' @export
+#'
+#' @examples
+tab.quali.col<-function(x,y){
+  #tableau de contingence
+  tableau=table(y,x)
+  #calcul des proportions par colonne, ajout des colonnes total et effectif
+  tabcol=rbind(addmargins(prop.table(addmargins(tableau,2),2),1), c(margin.table(tableau,2),sum(tableau)))
+  #nommage avec colonnes
+  rownames(tabcol)<-c(rownames(tableau),"Total","Effectif")
+  return(tabcol)
 }
 
 
