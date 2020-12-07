@@ -68,7 +68,8 @@ boxplot(df_test, "val_pred", "taille")
 We will now compare the clusters with each other.
 
 ```{r}
-#resCluster(df_test,val_pred,"grand")
+data=as.data.frame(df_test[,-c(1,2)])
+#resCluster(data,df_test$val_pred,"grand")
 ```
 
 ## Evaluation metrics

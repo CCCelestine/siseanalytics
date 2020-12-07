@@ -277,7 +277,7 @@ resCluster<-function(X,y,k){
   #moyenne du cluster
   grp_quanti=sapply(g_quanti,mean)
   #calcul de la valeur test
-  vt_quanti=sapply(df_quanti[,-n_quanti],vt.quanti,k=k,y=y)
+  vt_quanti=sapply(df_quanti[,-n_quanti],.vt.quanti,k=k,y=y)
   #reunion de moyenne globale, moyenne groupe et valeur test
   m_quanti=rbind(vt_quanti,grp_quanti,overall)
   #transposition de la matrice
@@ -297,7 +297,7 @@ resCluster<-function(X,y,k){
   #individus appartenant au cluster choisi
   g_quali=df_quali[df_quali$y==k,-n_quali]
   #calcul de plg, pl et valeur test
-  all_quali=sapply(var_quali,vt.quali,y=y,k=k)
+  all_quali=sapply(var_quali,.vt.quali,y=y,k=k)
   #nb de variables quali
   nn=length(all_quali)
   #initialisation

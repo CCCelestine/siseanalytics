@@ -100,7 +100,8 @@ boxplot(df_test, "val_pred", "taille")
 We will now compare the clusters with each other.
 
 ``` r
-#resCluster(df_test,val_pred,"grand")
+data=as.data.frame(df_test[,-c(1,2)])
+#resCluster(data,df_test$val_pred,"grand")
 ```
 
 ## Evaluation metrics
@@ -108,8 +109,8 @@ We will now compare the clusters with each other.
 ### Creating the metrics object
 
 We create 3 objects using the EvalMetrics function. This function takes
-as input dataframe containing the real values &#11;&#11;and the values
-&#11;&#11;predicted by a clustering.
+as input dataframe containing the real values and the values
+predicted by a clustering.
 
 ``` r
 Obj2c <- EvalMetrics(pred_reel_2c$val_reel,pred_reel_2c$val_pred)
