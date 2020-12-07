@@ -89,22 +89,20 @@ made either in rows or in columns.
 tab.quali.ligne(df_test$val_pred,df_test$sexe)
 ```
 
-    ##            grand      moyen      petit Total Effectif
-    ## femme 0.06451613 0.93548387 0.00000000     1       62
-    ## Femme 0.00000000 0.01724138 0.98275862     1      116
-    ## homme 0.64804469 0.32960894 0.02234637     1      179
-    ## Sum   0.33613445 0.33333333 0.33053221     1      357
+    ##            grand     moyen      petit Total Effectif
+    ## femme 0.02247191 0.3370787 0.64044944     1      178
+    ## homme 0.64804469 0.3296089 0.02234637     1      179
+    ## Sum   0.33613445 0.3333333 0.33053221     1      357
 
 ``` r
 tab.quali.col(df_test$val_pred,df_test$sexe)
 ```
 
-    ##                 grand        moyen        petit         Sum
-    ## femme      0.03333333   0.48739496   0.00000000   0.1736695
-    ## Femme      0.00000000   0.01680672   0.96610169   0.3249300
-    ## homme      0.96666667   0.49579832   0.03389831   0.5014006
-    ## Total      1.00000000   1.00000000   1.00000000   1.0000000
-    ## Effectif 120.00000000 119.00000000 118.00000000 357.0000000
+    ##                 grand       moyen        petit         Sum
+    ## femme      0.03333333   0.5042017   0.96610169   0.4985994
+    ## homme      0.96666667   0.4957983   0.03389831   0.5014006
+    ## Total      1.00000000   1.0000000   1.00000000   1.0000000
+    ## Effectif 120.00000000 119.0000000 118.00000000 357.0000000
 
 We can also perform a Chi-Square Independence Test as well as calculate
 Cramer’s V, which is a measure derived from Chi-Square. These results
@@ -121,13 +119,13 @@ khi2(df_test$sexe,df_test$val_pred)
     ##  Pearson's Chi-squared test
     ## 
     ## data:  tableau
-    ## X-squared = 427.85, df = 4, p-value < 2.2e-16
+    ## X-squared = 207.08, df = 2, p-value < 2.2e-16
 
 ``` r
 vcramer(df_test$sexe,df_test$val_pred)
 ```
 
-    ## [1] 0.774098
+    ## [1] 0.7616195
 
 Next, we will approach the case of **quantitative variables**.
 
@@ -191,11 +189,10 @@ resCluster(data,df_test$val_pred,"grand")
     ## sport$basket       6.795126  6.162465 18.333333
     ## sport$foot         6.739522 33.053221 56.666667
     ## val_parent$moyen  -4.817785 27.731092 11.666667
-    ## sexe$femme        -4.973617 17.366947  3.333333
     ## sport$tennis      -5.175690 15.686275  1.666667
-    ## sexe$Femme        -9.314551 32.492997  0.000000
     ## val_parent$petit  -9.733882 34.453782  0.000000
     ## sport$gym        -10.345304 37.254902  0.000000
+    ## sexe$femme       -12.493225 49.859944  3.333333
 
 ## Evaluation metrics
 
