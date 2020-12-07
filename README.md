@@ -83,6 +83,16 @@ vcramer(df_test$sexe,df_test$val_pred)
 
     ## [1] 0.774098
 
+``` r
+tab.quali(df_test$val_pred,df_test$sexe)
+```
+
+    ##            grand      moyen      petit Total Effectif
+    ## femme 0.06451613 0.93548387 0.00000000     1       62
+    ## Femme 0.00000000 0.01724138 0.98275862     1      116
+    ## homme 0.64804469 0.32960894 0.02234637     1      179
+    ## Sum   0.33613445 0.33333333 0.33053221     1      357
+
 Next, we will approach the case of **quantitative variables**.
 
 ``` r
@@ -92,8 +102,15 @@ boxplot(df_test, "val_pred", "taille")
 ![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
 ``` r
-#tab.quanti(df_test,val_pred)
+df_test=as.data.frame(df_test)
+data_quanti=df_test[,3:5]
+tab.quanti(data_quanti,df_test$val_pred)
 ```
+
+    ##              grand     moyen     petit      eta
+    ## taille   192.55833 170.22689 150.86441 88.14153
+    ## poids     84.70833  66.85714  46.31356 65.87357
+    ## pointure  46.88333  39.47899  36.47458 72.29326
 
 ### Characterization of the clusters
 
@@ -101,8 +118,29 @@ We will now compare the clusters with each other.
 
 ``` r
 data=as.data.frame(df_test[,-c(1,2)])
-#resCluster(data,df_test$val_pred,"grand")
+resCluster(data,df_test$val_pred,"grand")
 ```
+
+    ## [1] "Caracterisation du cluster k = grand"
+    ## [1] "33.61 % de la population"
+    ## [1] "Variables quantitatives"
+    ##          test_value     group   overall
+    ## poids     -8.135136  84.70833  66.06723
+    ## pointure -65.319893  46.88333  40.97479
+    ## taille   -89.908924 192.55833 171.33333
+    ## [1] "Variables qualitatives"
+    ##                  test_value   group % overall %
+    ## val_parent$grand  13.986667 37.815126 88.333333
+    ## sexe$homme        12.493225 50.140056 96.666667
+    ## sport$volley       7.735522  7.843137 23.333333
+    ## sport$basket       6.795126  6.162465 18.333333
+    ## sport$foot         6.739522 33.053221 56.666667
+    ## val_parent$moyen  -4.817785 27.731092 11.666667
+    ## sexe$femme        -4.973617 17.366947  3.333333
+    ## sport$tennis      -5.175690 15.686275  1.666667
+    ## sexe$Femme        -9.314551 32.492997  0.000000
+    ## val_parent$petit  -9.733882 34.453782  0.000000
+    ## sport$gym        -10.345304 37.254902  0.000000
 
 ## Evaluation metrics
 

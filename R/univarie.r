@@ -84,9 +84,9 @@ vcramer<-function(x,y){
 #' @export
 #'
 #' @examples
-tab.quali<-function(y,x){
+tab.quali<-function(x,y){
   #tableau de contingence
-  tableau=table(data_bis$val_pred,data_bis$sexe)
+  tableau=table(y,x)
   #calcul des proportions, ajout des colonnes total et effectif
   tabligne=cbind(addmargins(prop.table(addmargins(tableau,1),1),2), c(margin.table(tableau,1),sum(tableau)))
   #nommage avec colonnes

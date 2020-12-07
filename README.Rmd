@@ -54,13 +54,16 @@ barplotYX(df_test, "sexe", "val_pred")
 barplotXY(df_test, "sexe", "val_pred")
 khi2(df_test$sexe,df_test$val_pred)
 vcramer(df_test$sexe,df_test$val_pred)
+tab.quali(df_test$val_pred,df_test$sexe)
 ```
 
 Next, we will approach the case of **quantitative variables**.  
 
 ```{r}
 boxplot(df_test, "val_pred", "taille")
-#tab.quanti(df_test,val_pred)
+df_test=as.data.frame(df_test)
+data_quanti=df_test[,3:5]
+tab.quanti(data_quanti,df_test$val_pred)
 ```
 
 ### Characterization of the clusters
@@ -69,7 +72,7 @@ We will now compare the clusters with each other.
 
 ```{r}
 data=as.data.frame(df_test[,-c(1,2)])
-#resCluster(data,df_test$val_pred,"grand")
+resCluster(data,df_test$val_pred,"grand")
 ```
 
 ## Evaluation metrics

@@ -4,12 +4,12 @@
 \alias{tab.quali}
 \title{Tableau des profils pour une variable qualitative}
 \usage{
-tab.quali(y, x)
+tab.quali(x, y)
 }
 \arguments{
-\item{y}{variable classe d'appartenance}
-
 \item{x}{variable qualitative}
+
+\item{y}{variable classe d'appartenance}
 }
 \value{
 
