@@ -1,7 +1,7 @@
 #' Diagramme à barres Y en fonction de X
 #'
 #' @param df dataframe contenant la variable numerique et la variable classe d'appartenance
-#' @param x nom de la variable numerique
+#' @param x nom de la variable catégorielle
 #' @param y nom de la variable classe d'appartenance
 #'
 #' @return
@@ -20,7 +20,7 @@ barplotYX <- function (df, x, y){
 #' Diagramme à barres X en fonction de Y
 #'
 #' @param df dataframe contenant la variable numerique et la variable classe d'appartenance
-#' @param x nom de la variable numerique
+#' @param x nom de la variable catégorielle
 #' @param y nom de la variable classe d'appartenance
 #'
 #' @return
@@ -94,7 +94,7 @@ tab.quali.ligne<-function(x,y){
   return(tabligne)
 }
 
-#' Tableau des profils colonnes ligne pour une variable qualitative
+#' Tableau des profils colonnes pour une variable qualitative
 #'
 #' @param y variable classe d'appartenance
 #' @param x variable qualitative
@@ -171,7 +171,7 @@ boxplot <- function (df, x, y){
 #' Caractérisation d'un groupe avec une variable qualitative
 #'
 #' @param x variable qualitative
-#' @param k cluster choisi
+#' @param k nom du cluster choisi
 #' @param y variable classe d'appartenance
 #'
 #' @return

@@ -9,7 +9,7 @@ barplotXY(df, x, y)
 \arguments{
 \item{df}{dataframe contenant la variable numerique et la variable classe d'appartenance}
 
-\item{x}{nom de la variable numerique}
+\item{x}{nom de la variable catégorielle}
 
 \item{y}{nom de la variable classe d'appartenance}
 }

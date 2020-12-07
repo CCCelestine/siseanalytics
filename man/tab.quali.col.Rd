@@ -2,7 +2,7 @@
 % Please edit documentation in R/univarie.r
 \name{tab.quali.col}
 \alias{tab.quali.col}
-\title{Tableau des profils colonnes ligne pour une variable qualitative}
+\title{Tableau des profils colonnes pour une variable qualitative}
 \usage{
 tab.quali.col(x, y)
 }
@@ -15,5 +15,5 @@ tab.quali.col(x, y)
 
 }
 \description{
-Tableau des profils colonnes ligne pour une variable qualitative
+Tableau des profils colonnes pour une variable qualitative
 }

@@ -9,7 +9,7 @@
 \arguments{
 \item{x}{variable qualitative}
 
-\item{k}{cluster choisi}
+\item{k}{nom du cluster choisi}
 
 \item{y}{variable classe d'appartenance}
 }
