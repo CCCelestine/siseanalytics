@@ -6,13 +6,6 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
-
-This is an R Markdown document that generates a github readme.md file.
-
-```{r}
-summary(iris)
-```
 
 
 # siseanalytics
@@ -42,7 +35,12 @@ In your script, install the package using these command lines :
 library(devtools)
 #install_github("CCCelestine/siseanalytics")
 library(siseanalytics)
-data(df_test)
+
+data(df_test) # data frame test 357 rows and 8 variables
+data(pred_reel_3c) # predicted and real values 3 class 
+data(pred_reel_2c) # predicted and real values 2 class 
+data(pred_reel_2c_bis) # predicted and real values 2 class 
+
 ```
 ## Univariate characterization
 
@@ -80,36 +78,23 @@ We will now compare the clusters with each other.
 We create 3 objects using the EvalMetrics function. This function takes as input dataframe containing the real values and the values predicted by a clustering.
 
 ```{r}
-#Obj2c <- EvalMetrics(val_reel_22,val_pred_22)
-#Obj3c <- EvalMetrics(val_reel_32,val_pred_32)
-#Obj2c_bis <- EvalMetrics(val_reel_22,val_pred_bis)
+Obj2c <- EvalMetrics(pred_reel_2c$val_reel,pred_reel_2c$val_pred)
+Obj3c <- EvalMetrics(pred_reel_3c$val_reel,pred_reel_3c$val_pred)
+Obj2c_bis <- EvalMetrics(pred_reel_2c_bis$val_reel,pred_reel_2c_bis$val_pred)
 ```
 
 ggMatconf function display the confusion matrix under a ggplot graph
 
 ```{r}
-#ggMatConf(Obj2c)
-#ggMatConf(Obj3c)
+ggMatConf(Obj2c)
+ggMatConf(Obj3c)
 ```
 
 Thanks to the overload of the print method we can display the different attributes of our object.
 ```{r}
-#print(Obj2c)
-#print(Obj3c)
+print(Obj2c)
+print(Obj3c)
 
-#[1] "Matrice de confusion et indincateurs"
-#       valreel
-# valpred   -   +
-#      - 175   4
-#      +   3 174
-#                      Valeur
-# Erreur            0.01966292
-# Accuracy          0.98033708
-# Précision         0.97765363
-# Sensibilite       0.98314607
-# Specificity       0.97752809
-# Balanced Accuracy 0.98033708
-# F1                0.98039216
 ```
 ### Performance indicators
 
@@ -132,7 +117,7 @@ F1 score| Hybrid indicator used for unbalanced classes
 Finally in this clustering evaluation part, the pacakge allows you to compare two clustering results stored in two different objects
 
 ```{r}
-#compareRes(Obj2c,Obj2c_bis)
+compareRes(Obj2c,Obj2c_bis)
 ```
 
 The output will be a ggplot chart confronting the indicators

@@ -1,27 +1,4 @@
 
-## R Markdown
-
-This is an R Markdown document that generates a github readme.md file.
-
-``` r
-summary(iris)
-```
-
-    ##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
-    ##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
-    ##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
-    ##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
-    ##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
-    ##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
-    ##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
-    ##        Species  
-    ##  setosa    :50  
-    ##  versicolor:50  
-    ##  virginica :50  
-    ##                 
-    ##                 
-    ## 
-
 # siseanalytics
 
 siseanalytics is a package to characterize the classes obtained after a
@@ -64,7 +41,10 @@ library(siseanalytics)
     ##     boxplot
 
 ``` r
-data(df_test)
+data(df_test) # data frame test 357 rows and 8 variables
+data(pred_reel_3c) # predicted and real values 3 class 
+data(pred_reel_2c) # predicted and real values 2 class 
+data(pred_reel_2c_bis) # predicted and real values 2 class 
 ```
 
 ## Univariate characterization
@@ -79,13 +59,13 @@ First of all, we will see the case of **qualitative variables**.
 barplotYX(df_test, "sexe", "val_pred")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
 ``` r
 barplotXY(df_test, "sexe", "val_pred")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-3-2.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-2-2.png)<!-- -->
 
 ``` r
 khi2(df_test$sexe,df_test$val_pred)
@@ -109,7 +89,7 @@ Next, we will approach the case of **quantitative variables**.
 boxplot(df_test, "val_pred", "taille")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
 ``` r
 #tab.quanti(df_test,val_pred)
@@ -128,43 +108,68 @@ We will now compare the clusters with each other.
 ### Creating the metrics object
 
 We create 3 objects using the EvalMetrics function. This function takes
-as input dataframe containing the real values and the values
-predicted by a clustering.
+as input dataframe containing the real values &#11;&#11;and the values
+&#11;&#11;predicted by a clustering.
 
 ``` r
-#Obj2c <- EvalMetrics(val_reel_22,val_pred_22)
-#Obj3c <- EvalMetrics(val_reel_32,val_pred_32)
-#Obj2c_bis <- EvalMetrics(val_reel_22,val_pred_bis)
+Obj2c <- EvalMetrics(pred_reel_2c$val_reel,pred_reel_2c$val_pred)
+Obj3c <- EvalMetrics(pred_reel_3c$val_reel,pred_reel_3c$val_pred)
+Obj2c_bis <- EvalMetrics(pred_reel_2c_bis$val_reel,pred_reel_2c_bis$val_pred)
 ```
 
 ggMatconf function display the confusion matrix under a ggplot graph
 
 ``` r
-#ggMatConf(Obj2c)
-#ggMatConf(Obj3c)
+ggMatConf(Obj2c)
 ```
+
+![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
+``` r
+ggMatConf(Obj3c)
+```
+
+![](README_files/figure-gfm/unnamed-chunk-6-2.png)<!-- -->
 
 Thanks to the overload of the print method we can display the different
 attributes of our object.
 
 ``` r
-#print(Obj2c)
-#print(Obj3c)
-
-#[1] "Matrice de confusion et indincateurs"
-#       valreel
-# valpred   -   +
-#      - 175   4
-#      +   3 174
-#                      Valeur
-# Erreur            0.01966292
-# Accuracy          0.98033708
-# Précision         0.97765363
-# Sensibilite       0.98314607
-# Specificity       0.97752809
-# Balanced Accuracy 0.98033708
-# F1                0.98039216
+print(Obj2c)
 ```
+
+    ## [1] "Matrice de confusion et indicateurs"
+    ##        valreel
+    ## valpred   -   +
+    ##       - 175   4
+    ##       +   3 174
+    ##                       Valeur
+    ## Erreur            0.01966292
+    ## Accuracy          0.98033708
+    ## Précision         0.97765363
+    ## Sensibilite       0.98314607
+    ## Specificity       0.97752809
+    ## Balanced Accuracy 0.98033708
+    ## F1                0.98039216
+
+``` r
+print(Obj3c)
+```
+
+    ## [1] "Matrice de confusion et indicateurs"
+    ##        valreel
+    ## valpred grand moyen petit
+    ##   grand   118     2     0
+    ##   moyen     3   114     2
+    ##   petit     0     3   115
+    ##                       grand     moyen     petit
+    ## Erreur            0.0280112 0.0280112 0.0280112
+    ## Accuracy          0.9719888 0.9719888 0.9719888
+    ## Précision         0.9752066 0.9579832 0.9829060
+    ## Sensibilite       0.9833333 0.9579832 0.9745763
+    ## Specificity       0.9873418 0.9789916 0.9916318
+    ## Balanced Accuracy 0.9853376 0.9684874 0.9831040
+    ## F1                0.9792531 0.9579832 0.9787234
 
 ### Performance indicators
 
@@ -187,7 +192,9 @@ Finally in this clustering evaluation part, the pacakge allows you to
 compare two clustering results stored in two different objects
 
 ``` r
-#compareRes(Obj2c,Obj2c_bis)
+compareRes(Obj2c,Obj2c_bis)
 ```
+
+![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
 The output will be a ggplot chart confronting the indicators
