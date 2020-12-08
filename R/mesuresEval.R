@@ -1,9 +1,9 @@
-#' Création de l'objet "metrics" a partir de deux df contenant les valeurs prédites et réels
+#' Creation of the "metrics" object from two df containing the predicted and actual values
 #'
-#' @param valreel Un dataframe contenant les classes réels
-#' @param valpred Un dataframe contenant les classes prédites par un clustering
+#' @param valreel A dataframe containing the real classes
+#' @param valpred A dataframe containing the classes predicted by a clustering
 #'
-#' @return Un objet de la classe metrics
+#' @return An object of the metrics class
 #' @export
 #'
 #' @examples
@@ -82,9 +82,9 @@ EvalMetrics <- function(valreel,valpred){
 }
 
 
-#' Surcharge de print pour l'affichage de l'objet "metrics"
+#' Overload of print for displaying the "metrics" object
 #'
-#' @param obj La fonction print affichera la matrice de confusion et les indicateurs lorsque elle recoit un paramètre de type metrics
+#' @param obj The print function will display the confusion matrix and the indicators when it receives a parameter of type metrics
 #'
 #' @return
 #' @export
@@ -97,10 +97,10 @@ print.metrics <- function(obj){
 }
 
 
-#' Fonction qui permet de comparer le resultat de deux clustering
+#' Function which allows to compare the result of two clustering
 #'
-#' @param object1 Le premier objet suite à un premier clustering
-#' @param object2 Le second objet suite à un premier clustering
+#' @param object1 The first object following a first clustering
+#' @param object2 The second object following a second clustering
 #'
 #' @return
 #' @import ggplot2 ggpubr
@@ -134,9 +134,9 @@ compareRes <- function(object1,object2){
   }
 }
 
-#' Graphique Matrice de confusion
+#' Confusion Matrix Graph
 #'
-#' @param objet #Variable de type metrics
+#' @param objet #Metrics variable
 #'
 #' @return
 #' @import dplyr ggplot2
@@ -145,7 +145,10 @@ compareRes <- function(object1,object2){
 #' @examples
 ggMatConf <- function(objet){
 
+  # On stock la matrice de confusion dans une variable
   table <- data.frame(objet$mc)
+  # Grâce a dplyr on ajoute une colonne pour les bonnes prédictions et les mauvaises
+  # On ajoute aussi une colonne prop pour calculer la proportion
   plotTable <- table %>%
     mutate(goodbad = ifelse(table$valpred == table$valreel, "good", "bad")) %>%
     group_by(valreel) %>%

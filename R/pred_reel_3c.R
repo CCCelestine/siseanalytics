@@ -6,6 +6,5 @@
 #' \describe{
 #'   \item{val_pred}{val_pred}
 #'   \item{val_reel}{val_reel}
-#'   ...
 #' }
 "pred_reel_3c"
