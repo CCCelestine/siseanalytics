@@ -2,20 +2,20 @@
 % Please edit documentation in R/multivarie.R
 \name{acpGraph}
 \alias{acpGraph}
-\title{Graphique resultat kmeans couplé acp}
+\title{Graphique resultat kmeans couple acp}
 \usage{
 acpGraph(vars, reel, resKM)
 }
 \arguments{
-\item{vars}{DataFrame contenant les variables quantitatives}
+\item{vars}{DataFrame with quantitatives variable}
 
-\item{reel}{DataFrame contenant les variables quantitatives}
+\item{reel}{DataFrame with quantitatives variable}
 
-\item{resKM}{Resultats d'un clustering}
+\item{resKM}{clustering results}
 }
 \value{
 
 }
 \description{
-Graphique resultat kmeans couplé acp
+Graphique resultat kmeans couple acp
 }

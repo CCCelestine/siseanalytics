@@ -48,6 +48,7 @@ data(df_test) # data frame test 357 rows and 8 variables
 data(pred_reel_3c) # predicted and real values 3 class 
 data(pred_reel_2c) # predicted and real values 2 class 
 data(pred_reel_2c_bis) # predicted and real values 2 class 
+data(fromage) #dataframe test with quantitatives variables and clusters variable
 
 ```
 
@@ -121,6 +122,23 @@ clusters. This can be visualized on a radar diagram for quantitative variables.
 ```{r}
 radar(data_quanti,df_test$val_pred)
 
+```
+
+## Multivariate characterization
+
+```{r}
+X=data.frame(fromage["calories"],fromage["magnesium"],fromage["lipides"],fromage["retinol"])
+y=fromage$groupes.cah
+AOV2(X,y)
+```
+
+```{r}
+d=3
+ACP2(X,y,d)
+```
+
+```{r}
+LDA2(X,y)
 ```
 
 ## Evaluation metrics
