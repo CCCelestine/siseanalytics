@@ -18,6 +18,8 @@ In this tutorial we will see the concrete functionality of the package
       - Characterization of the partition
       - Characterization of clusters
   - Multivariate characterization
+      - ANOVA
+      - ACP LDA
 
 ## Installation
 
