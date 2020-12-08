@@ -35,6 +35,10 @@ Imports:
     ggplot2,
     dplyr,
     readxl,
-    questionr
+    questionr,
+    ggradar,
+    scales,
+    tibble
+Remotes: ricardo-bion/ggradar
 Depends: 
     R (>= 2.10)

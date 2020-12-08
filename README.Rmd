@@ -111,6 +111,16 @@ The first compares the mean of a variable for a cluster and the overall mean, wh
 ```{r}
 data=as.data.frame(df_test[,-c(1,2)])
 resCluster(data,df_test$val_pred,"grand")
+
+```
+
+
+Beyond the calculated value of the VT, we will focus on the disparities and concomitances between
+clusters. This can be visualized on a radar diagram for quantitative variables.
+
+```{r}
+radar(data_quanti,df_test$val_pred)
+
 ```
 
 ## Evaluation metrics

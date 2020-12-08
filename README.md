@@ -194,6 +194,16 @@ resCluster(data,df_test$val_pred,"grand")
     ## sport$gym        -10.345304 37.254902  0.000000
     ## sexe$femme       -12.493225 49.859944  3.333333
 
+Beyond the calculated value of the VT, we will focus on the disparities
+and concomitances between clusters. This can be visualized on a radar
+diagram for quantitative variables.
+
+``` r
+radar(data_quanti,df_test$val_pred)
+```
+
+![](README_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+
 ## Evaluation metrics
 
 ### Creating the metrics object
@@ -214,13 +224,13 @@ ggMatconf function display the confusion matrix under a ggplot graph
 ggMatConf(Obj2c)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
 
 ``` r
 ggMatConf(Obj3c)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-11-2.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-12-2.png)<!-- -->
 
 Thanks to the overload of the print method we can display the different
 attributes of our object.
@@ -286,6 +296,6 @@ compare two clustering results stored in two different objects
 compareRes(Obj2c,Obj2c_bis)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
 
 The output will be a ggplot chart confronting the indicators
