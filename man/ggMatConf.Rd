@@ -15,3 +15,6 @@ ggMatConf(objet)
 \description{
 Confusion Matrix Graph
 }
+\examples{
+ggMatConf(Obj2c)
+}

@@ -17,3 +17,6 @@ compareRes(object1, object2)
 \description{
 Function which allows to compare the result of two clustering
 }
+\examples{
+compareRes(Obj2c,Obj2c_bis)
+}

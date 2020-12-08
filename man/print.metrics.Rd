@@ -15,3 +15,6 @@
 \description{
 Overload of print for displaying the "metrics" object
 }
+\examples{
+print(Obj2c)
+}
