@@ -92,6 +92,7 @@ EvalMetrics <- function(valreel,valpred){
 #' @export
 #'
 #' @examples
+#' print(Obj2c)
 print.metrics <- function(obj){
   print("Matrice de confusion et indicateurs")
   print(obj$mc)
@@ -109,6 +110,7 @@ print.metrics <- function(obj){
 #' @export
 #'
 #' @examples
+#' compareRes(Obj2c,Obj2c_bis)
 compareRes <- function(object1,object2){
   if (object1$nbclasse != object2$nbclasse){stop("Les deux objets n'ont pas le même nombre de classe")}
   if(object1$nbclasse == 2){
@@ -145,6 +147,7 @@ compareRes <- function(object1,object2){
 #' @export
 #'
 #' @examples
+#' ggMatConf(Obj2c)
 ggMatConf <- function(objet){
 
   # On stock la matrice de confusion dans une variable
