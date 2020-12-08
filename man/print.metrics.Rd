@@ -16,5 +16,6 @@
 Overload of print for displaying the "metrics" object
 }
 \examples{
+Obj2c <- EvalMetrics(pred_reel_2c$val_reel,pred_reel_2c$val_pred)
 print(Obj2c)
 }

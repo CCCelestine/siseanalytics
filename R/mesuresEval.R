@@ -29,7 +29,7 @@ EvalMetrics <- function(valreel,valpred){
   instance$nomclass <- rownames(instance$mc)
   instance$nbclasse <- d
 
-  #Selon le nombre de valeur que prendre la variable cible
+  #Selon le nombre de valeur que prendre la variable d'appartenance aux classes
   if(c == 2){
     #Calcul des éléments de la matrice de confusion
     data <- instance$mc
@@ -92,6 +92,7 @@ EvalMetrics <- function(valreel,valpred){
 #' @export
 #'
 #' @examples
+#' Obj2c <- EvalMetrics(pred_reel_2c$val_reel,pred_reel_2c$val_pred)
 #' print(Obj2c)
 print.metrics <- function(obj){
   print("Matrice de confusion et indicateurs")
@@ -110,6 +111,8 @@ print.metrics <- function(obj){
 #' @export
 #'
 #' @examples
+#' Obj2c <- EvalMetrics(pred_reel_2c$val_reel,pred_reel_2c$val_pred)
+#' Obj2c_bis <- EvalMetrics(pred_reel_2c_bis$val_reel,pred_reel_2c_bis$val_pred)
 #' compareRes(Obj2c,Obj2c_bis)
 compareRes <- function(object1,object2){
   if (object1$nbclasse != object2$nbclasse){stop("Les deux objets n'ont pas le même nombre de classe")}
@@ -147,6 +150,7 @@ compareRes <- function(object1,object2){
 #' @export
 #'
 #' @examples
+#' Obj2c <- EvalMetrics(pred_reel_2c$val_reel,pred_reel_2c$val_pred)
 #' ggMatConf(Obj2c)
 ggMatConf <- function(objet){
 

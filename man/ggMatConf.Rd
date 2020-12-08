@@ -16,5 +16,6 @@ ggMatConf(objet)
 Confusion Matrix Graph
 }
 \examples{
+Obj2c <- EvalMetrics(pred_reel_2c$val_reel,pred_reel_2c$val_pred)
 ggMatConf(Obj2c)
 }

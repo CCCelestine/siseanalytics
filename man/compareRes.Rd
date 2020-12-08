@@ -18,5 +18,7 @@ compareRes(object1, object2)
 Function which allows to compare the result of two clustering
 }
 \examples{
+Obj2c <- EvalMetrics(pred_reel_2c$val_reel,pred_reel_2c$val_pred)
+Obj2c_bis <- EvalMetrics(pred_reel_2c_bis$val_reel,pred_reel_2c_bis$val_pred)
 compareRes(Obj2c,Obj2c_bis)
 }
