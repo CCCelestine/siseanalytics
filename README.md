@@ -10,16 +10,17 @@ measures.
 In this tutorial we will see the concrete functionality of the package
 
   - Installation
-  - Evaluation metrics
-      - Object creation and display
-      - Performance indicators
-      - Comparaison of clustering results
   - Univariate characterization
       - Characterization of the partition
       - Characterization of clusters
   - Multivariate characterization
       - ANOVA
-      - ACP LDA
+      - ACP
+      - LDA
+  - Evaluation metrics
+      - Object creation and display
+      - Performance indicators
+      - Comparaison of clustering results
 
 ## Installation
 
