@@ -7,8 +7,8 @@
 \format{
 A data frame with 357 rows and 8 variables:
 \describe{
-\item val_pred, predicted value
-\item val_reel, real values
+\item val_pred,predicted  membership class variable
+\item val_reel, real membership class variable
 \item taille, the height of the person
 \item poids, the person's weight in kg
 \item pointure, The shoe size

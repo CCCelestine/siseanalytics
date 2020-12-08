@@ -7,6 +7,8 @@
 #' @export
 #'
 #' @examples
+#' EvalMetrics(pred_reel_2c$val_reel,pred_reel_2c$val_pred)
+#'
 EvalMetrics <- function(valreel,valpred){
   #Création des variables pour la construction de notre class
   valpred <- as.factor(valpred)
