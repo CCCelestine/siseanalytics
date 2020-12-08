@@ -35,6 +35,9 @@ library(devtools)
 library(siseanalytics)
 ```
 
+    ## Warning: replacing previous import 'MASS::select' by 'dplyr::select' when
+    ## loading 'siseanalytics'
+
     ## 
     ## Attaching package: 'siseanalytics'
 
@@ -49,6 +52,7 @@ data(df_test) # data frame test 357 rows and 8 variables
 data(pred_reel_3c) # predicted and real values 3 class 
 data(pred_reel_2c) # predicted and real values 2 class 
 data(pred_reel_2c_bis) # predicted and real values 2 class 
+data(fromage) #dataframe test with quantitatives variables and clusters variable
 ```
 
 ## Univariate characterization
@@ -204,6 +208,226 @@ radar(data_quanti,df_test$val_pred)
 
 ![](README_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 
+## Multivariate characterization
+
+``` r
+X=data.frame(fromage["calories"],fromage["magnesium"],fromage["lipides"],fromage["retinol"])
+y=fromage$groupes.cah
+AOV2(X,y)
+```
+
+    ## VariableExpl1 =  calories 
+    ## VariableExpl2 =  magnesium 
+    ## VariableExpl3 =  lipides 
+    ## VariableExpl4 =  retinol 
+    ## VariableCible =  y
+
+    ## Call:
+    ##    aov(formula = VariableCible ~ VariableExpl1 * VariableExpl2 * 
+    ##     VariableExpl3 * VariableExpl4, data = df)
+    ## 
+    ## Terms:
+    ##                 VariableExpl1 VariableExpl2 VariableExpl3 VariableExpl4
+    ## Sum of Squares      20.625235      2.866080      0.110079      2.998576
+    ## Deg. of Freedom             1             1             1             1
+    ##                 VariableExpl1:VariableExpl2 VariableExpl1:VariableExpl3
+    ## Sum of Squares                     4.464596                    0.069160
+    ## Deg. of Freedom                           1                           1
+    ##                 VariableExpl2:VariableExpl3 VariableExpl1:VariableExpl4
+    ## Sum of Squares                     0.724097                    0.359177
+    ## Deg. of Freedom                           1                           1
+    ##                 VariableExpl2:VariableExpl4 VariableExpl3:VariableExpl4
+    ## Sum of Squares                     0.633437                    0.000498
+    ## Deg. of Freedom                           1                           1
+    ##                 VariableExpl1:VariableExpl2:VariableExpl3
+    ## Sum of Squares                                   0.160459
+    ## Deg. of Freedom                                         1
+    ##                 VariableExpl1:VariableExpl2:VariableExpl4
+    ## Sum of Squares                                   0.634765
+    ## Deg. of Freedom                                         1
+    ##                 VariableExpl1:VariableExpl3:VariableExpl4
+    ## Sum of Squares                                   0.000898
+    ## Deg. of Freedom                                         1
+    ##                 VariableExpl2:VariableExpl3:VariableExpl4
+    ## Sum of Squares                                   1.258666
+    ## Deg. of Freedom                                         1
+    ##                 VariableExpl1:VariableExpl2:VariableExpl3:VariableExpl4
+    ## Sum of Squares                                                 0.013771
+    ## Deg. of Freedom                                                       1
+    ##                 Residuals
+    ## Sum of Squares   1.218437
+    ## Deg. of Freedom        13
+    ## 
+    ## Residual standard error: 0.3061469
+    ## Estimated effects may be unbalanced
+
+``` r
+d=3
+ACP2(X,y,d)
+```
+
+![](README_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->![](README_files/figure-gfm/unnamed-chunk-12-2.png)<!-- -->
+
+    ## -------------------------------------------------- 
+    ## Graphiques des individus 
+    ##  
+    ## -------------------------------------------------- 
+    ## Graphiques des variables 
+    ##  
+    ## -------------------------------------------------- 
+    ## Description des dimensions crÃ©Ã©es 
+    ##  
+    ## -------------------------------------------------- 
+    ## Visualisation des ellipses de confiance 
+    ##  
+    ## Les classes sont reprÃ©sentÃ©es par les couleurs
+    ## Call:
+    ## PCA(X = df, scale.unit = TRUE, quali.sup = 1, graph = T) 
+    ## 
+    ## 
+    ## Eigenvalues
+    ##                        Dim.1   Dim.2   Dim.3   Dim.4
+    ## Variance               2.625   1.001   0.361   0.013
+    ## % of var.             65.619  25.034   9.024   0.323
+    ## Cumulative % of var.  65.619  90.653  99.677 100.000
+    ## 
+    ## Individuals (the 10 first)
+    ##                 Dist    Dim.1    ctr   cos2    Dim.2    ctr   cos2    Dim.3
+    ## CarredelEst |  0.970 | -0.044  0.003  0.002 | -0.604  1.256  0.388 | -0.757
+    ## Babybel     |  0.254 |  0.174  0.040  0.469 | -0.143  0.071  0.320 | -0.112
+    ## Beaufort    |  2.106 |  2.052  5.532  0.949 | -0.439  0.663  0.043 |  0.170
+    ## Bleu        |  1.488 |  0.704  0.651  0.224 | -1.199  4.954  0.650 | -0.524
+    ## Camembert   |  1.766 | -1.001  1.317  0.321 |  1.445  7.192  0.670 | -0.005
+    ## Cantal      |  1.259 |  0.980  1.262  0.605 | -0.710  1.735  0.318 | -0.328
+    ## Chabichou   |  1.420 |  0.950  1.186  0.448 |  0.966  3.216  0.463 |  0.424
+    ## Chaource    |  2.072 | -0.169  0.038  0.007 |  2.061 14.628  0.989 |  0.013
+    ## Cheddar     |  1.617 |  1.355  2.412  0.702 |  0.517  0.922  0.102 | -0.698
+    ## Comte       |  2.679 |  2.448  7.871  0.835 | -0.455  0.713  0.029 |  0.986
+    ##                ctr   cos2  
+    ## CarredelEst  5.473  0.609 |
+    ## Babybel      0.120  0.195 |
+    ## Beaufort     0.276  0.007 |
+    ## Bleu         2.620  0.124 |
+    ## Camembert    0.000  0.000 |
+    ## Cantal       1.025  0.068 |
+    ## Chabichou    1.721  0.089 |
+    ## Chaource     0.002  0.000 |
+    ## Cheddar      4.652  0.186 |
+    ## Comte        9.294  0.136 |
+    ## 
+    ## Variables
+    ##                Dim.1    ctr   cos2    Dim.2    ctr   cos2    Dim.3    ctr
+    ## calories    |  0.978 36.428  0.956 |  0.056  0.310  0.003 | -0.184  9.357
+    ## magnesium   |  0.861 28.254  0.742 | -0.053  0.279  0.003 |  0.505 70.787
+    ## lipides     |  0.959 35.012  0.919 |  0.083  0.696  0.007 | -0.261 18.888
+    ## retinol     | -0.090  0.305  0.008 |  0.994 98.714  0.988 |  0.059  0.968
+    ##               cos2  
+    ## calories     0.034 |
+    ## magnesium    0.256 |
+    ## lipides      0.068 |
+    ## retinol      0.003 |
+    ## 
+    ## Supplementary categories
+    ##                 Dist    Dim.1   cos2 v.test    Dim.2   cos2 v.test    Dim.3
+    ## y_1         |  0.598 |  0.443  0.548  1.722 | -0.262  0.191 -1.647 | -0.305
+    ## y_2         |  2.126 |  1.986  0.873  2.594 | -0.104  0.002 -0.219 |  0.750
+    ## y_3         |  2.037 | -0.496  0.059 -0.648 |  1.970  0.935  4.166 |  0.143
+    ## y_4         |  3.479 | -3.372  0.940 -4.405 | -0.754  0.047 -1.594 |  0.404
+    ##               cos2 v.test  
+    ## y_1          0.261 -3.202 |
+    ## y_2          0.125  2.644 |
+    ## y_3          0.005  0.505 |
+    ## y_4          0.013  1.424 |
+
+``` r
+LDA2(X,y)
+```
+
+    ## -------------------------------------------------- 
+    ## Distribution relative des classes 
+    ##  
+    ##         1         2         3         4 
+    ## 0.5862069 0.1379310 0.1379310 0.1379310 
+    ## -------------------------------------------------- 
+    ## Distribution absolue des classes 
+    ##  
+    ##  1  2  3  4 
+    ## 17  4  4  4 
+    ## -------------------------------------------------- 
+    ## Moyenne conditionlle des classes 
+    ##  
+    ## NULL
+    ## -------------------------------------------------- 
+    ## Matrice des coeeficients des fonctions discriminantes 
+    ##  
+    ##                   LD1         LD2           LD3
+    ## calories  -0.01759698 -0.01809810 -0.0136736785
+    ## magnesium -0.02977032  0.04835176 -0.1349818210
+    ## lipides   -0.11988764  0.12042520  0.3002589555
+    ## retinol   -0.02481023  0.06505577  0.0009106115
+    ## -------------------------------------------------- 
+    ## Liste des classes 
+    ##  
+    ## [1] "1" "2" "3" "4"
+    ## ================================================== 
+    ## Fonctions canoniques 
+    ##  
+    ## -------------------------------------------------- 
+    ## Moyenne des varibles 
+    ##  
+    ##  calories magnesium   lipides   retinol 
+    ## 300.03448  26.96552  24.15862  67.56207 
+    ## -------------------------------------------------- 
+    ## Obvservation des constantes 
+    ##  
+    ##        LD1        LD2        LD3 
+    ## 10.6550224 -3.1783839  0.4270647 
+    ## -------------------------------------------------- 
+    ## Moyennes conditionnelles 
+    ##  
+    ##          LD1        LD2        LD3
+    ## 1 -0.7181943 -0.6918092  0.4784756
+    ## 2 -2.8346252 -0.1475351 -1.8162033
+    ## 3 -0.5220837  3.2201390  0.3311144
+    ## 4  6.4090349 -0.1324149 -0.5484324
+    ## -------------------------------------------------- 
+    ## Coefficient des fonctions canoniques 
+    ##  
+    ##                     1           2           3          4
+    ## calories   0.01861596  0.07738512 -0.05361887 -0.1028841
+    ## magnesium -0.07665483  0.32240855  0.12654757 -0.1231731
+    ## lipides    0.14645796 -0.22326171  0.54979732 -0.9489819
+    ## retinol   -0.02675191  0.05907583  0.22274315 -0.1681234
+    ## -------------------------------------------------- 
+    ## Constante de fonction de classement 
+    ##  
+    ## [1]  -6.394955 -38.168440 -23.012997  45.797038
+
+    ## Call:
+    ## lda(y ~ ., data = df)
+    ## 
+    ## Prior probabilities of groups:
+    ##         1         2         3         4 
+    ## 0.5862069 0.1379310 0.1379310 0.1379310 
+    ## 
+    ## Group means:
+    ##   calories magnesium  lipides   retinol
+    ## 1 331.1176  26.88235 27.15294  60.09412
+    ## 2 389.7500  45.75000 30.65000  64.27500
+    ## 3 276.5000  24.25000 22.82500 115.00000
+    ## 4 101.7500  11.25000  6.27500  55.15000
+    ## 
+    ## Coefficients of linear discriminants:
+    ##                   LD1         LD2           LD3
+    ## calories  -0.01759698 -0.01809810 -0.0136736785
+    ## magnesium -0.02977032  0.04835176 -0.1349818210
+    ## lipides   -0.11988764  0.12042520  0.3002589555
+    ## retinol   -0.02481023  0.06505577  0.0009106115
+    ## 
+    ## Proportion of trace:
+    ##    LD1    LD2    LD3 
+    ## 0.7507 0.1811 0.0682
+
 ## Evaluation metrics
 
 ### Creating the metrics object
@@ -224,13 +448,13 @@ ggMatconf function display the confusion matrix under a ggplot graph
 ggMatConf(Obj2c)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
 
 ``` r
 ggMatConf(Obj3c)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-12-2.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-15-2.png)<!-- -->
 
 Thanks to the overload of the print method we can display the different
 attributes of our object.
@@ -247,7 +471,7 @@ print(Obj2c)
     ##                       Valeur
     ## Erreur            0.01966292
     ## Accuracy          0.98033708
-    ## Précision         0.97765363
+    ## Precision         0.97765363
     ## Sensibilite       0.98314607
     ## Specificity       0.97752809
     ## Balanced Accuracy 0.98033708
@@ -266,7 +490,7 @@ print(Obj3c)
     ##                       grand     moyen     petit
     ## Erreur            0.0280112 0.0280112 0.0280112
     ## Accuracy          0.9719888 0.9719888 0.9719888
-    ## Précision         0.9752066 0.9579832 0.9829060
+    ## Precision         0.9752066 0.9579832 0.9829060
     ## Sensibilite       0.9833333 0.9579832 0.9745763
     ## Specificity       0.9873418 0.9789916 0.9916318
     ## Balanced Accuracy 0.9853376 0.9684874 0.9831040
@@ -296,6 +520,6 @@ compare two clustering results stored in two different objects
 compareRes(Obj2c,Obj2c_bis)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
 
 The output will be a ggplot chart confronting the indicators
