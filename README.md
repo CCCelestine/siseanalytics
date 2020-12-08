@@ -194,6 +194,12 @@ resCluster(data,df_test$val_pred,"grand")
     ## sport$gym        -10.345304 37.254902  0.000000
     ## sexe$femme       -12.493225 49.859944  3.333333
 
+``` r
+radar(data_quanti,df_test$val_pred)
+```
+
+![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
 ## Evaluation metrics
 
 ### Creating the metrics object
