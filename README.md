@@ -210,10 +210,28 @@ radar(data_quanti,df_test$val_pred)
 
 ## Multivariate characterization
 
+This part is devoted to the multivariate characterization of
+post-clustering classes. Three analyzes are applicable: ANOVA, PCA and
+ADL. For all of these three functions, 2 variables are taken as inputs,
+the first, X, comprises a data frame of the various explanatory
+variables. And the second, y, the column containing the value of the
+previously generated classes.
+
+### ANOVA
+
+First of all, we need to set up the entrance values
+
 ``` r
 X=data.frame(fromage["calories"],fromage["magnesium"],fromage["lipides"],fromage["retinol"])
 y=fromage$groupes.cah
-AOV2(X,y)
+```
+
+The AOV2 () function is available to allow the user to perform a
+multifactorial ANOVA in order to observe or not a significant difference
+between the means. Here is an example of use:
+
+``` r
+anova2<-AOV2(X,y)
 ```
 
     ## VariableExpl1 =  calories 
@@ -221,6 +239,10 @@ AOV2(X,y)
     ## VariableExpl3 =  lipides 
     ## VariableExpl4 =  retinol 
     ## VariableCible =  y
+
+``` r
+anova2
+```
 
     ## Call:
     ##    aov(formula = VariableCible ~ VariableExpl1 * VariableExpl2 * 
@@ -261,12 +283,22 @@ AOV2(X,y)
     ## Residual standard error: 0.3061469
     ## Estimated effects may be unbalanced
 
+When the function is executed, the explanatory and class variables are
+defined and an ANOVA crossing the variables is generated.
+
+### ACP
+
+In the package, there is a function to perform a PCA, once again,
+post-clustering, with input the X and y defined previously as well as an
+integer numerical value which will define the number of axes that we
+want keep.
+
 ``` r
 d=3
 ACP2(X,y,d)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->![](README_files/figure-gfm/unnamed-chunk-12-2.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->![](README_files/figure-gfm/unnamed-chunk-13-2.png)<!-- -->
 
     ## -------------------------------------------------- 
     ## Graphiques des individus 
@@ -338,6 +370,19 @@ ACP2(X,y,d)
     ## y_2          0.125  2.644 |
     ## y_3          0.005  0.505 |
     ## y_4          0.013  1.424 |
+
+A lot of information results from the execution of the function. We
+notice the presence of the eigenvalues associated with the dimensions as
+well as other descriptive indicators.
+
+We can see graphs, the first one is about observation and the other one
+is about variable.
+
+### LDA
+
+It is possible to observe indicators resulting from a linear
+discriminant analysis such as for example the relative and absolute
+distribution of the classes or even the conditional means.
 
 ``` r
 LDA2(X,y)
@@ -448,13 +493,13 @@ ggMatconf function display the confusion matrix under a ggplot graph
 ggMatConf(Obj2c)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
 
 ``` r
 ggMatConf(Obj3c)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-15-2.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-16-2.png)<!-- -->
 
 Thanks to the overload of the print method we can display the different
 attributes of our object.
@@ -520,6 +565,6 @@ compare two clustering results stored in two different objects
 compareRes(Obj2c,Obj2c_bis)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
 
 The output will be a ggplot chart confronting the indicators
