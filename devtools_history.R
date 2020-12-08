@@ -11,6 +11,8 @@ usethis::use_package('tibble')
 usethis::use_build_ignore("devtools_history.R")
 devtools::document()
 
+fromage=read.table("D:/Documents/M2 SISE/Programmation R/Projet/antoine/data_multi.txt",header=T,row.names = 1,sep = "\t",dec=".")
+
 df_test<-read_xlsx("D:/Documents/M2 SISE/Programmation R/Projet/OneDrive_1_07-12-2020/df_test.xlsx")
 pred_reel_3c <- read_xlsx("C:/Users/alexi/Desktop/ProjetR/Données/test.xlsx")
 pred_reel_2c<-read_xlsx("C:/Users/alexi/Desktop/ProjetR/Données/test3.xlsx")
