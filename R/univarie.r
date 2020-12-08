@@ -1,8 +1,8 @@
-#' Diagramme à barres Y en fonction de X
+#' Barplot Y versus X
 #'
-#' @param df dataframe contenant la variable numerique et la variable classe d'appartenance
-#' @param x nom de la variable catégorielle
-#' @param y nom de la variable classe d'appartenance
+#' @param df dataframe which includes the categorical variable and the clusters variable
+#' @param x name of the categorical variable
+#' @param y name of the clusters variable
 #'
 #' @return
 #' @import ggplot2
@@ -17,11 +17,11 @@ barplotYX <- function (df, x, y){
     ylab("Effectifs")
 }
 
-#' Diagramme à barres X en fonction de Y
+#' Barplot X versus Y
 #'
-#' @param df dataframe contenant la variable numerique et la variable classe d'appartenance
-#' @param x nom de la variable catégorielle
-#' @param y nom de la variable classe d'appartenance
+#' @param df dataframe which includes the categorical variable and the clusters variable
+#' @param x name of the categorical variable
+#' @param y name of the clusters variable
 #'
 #' @return
 #' @import ggplot2
@@ -36,10 +36,10 @@ barplotXY <- function (df, x, y){
     ylab("Effectifs")
 }
 
-#' Test du khi deux
+#' Chi-Square Test
 #'
-#' @param x variable qualitative
-#' @param y variable classe d'appartenance
+#' @param x categorical variable
+#' @param y clusters variable
 #'
 #' @return
 #' @importFrom stats chisq.test
@@ -55,10 +55,10 @@ khi2<-function(x,y){
   return(res)
 }
 
-#' V de Cramer
+#' Cramer's V
 #'
-#' @param x variable qualitative
-#' @param y variable classe d'appartenance
+#' @param x categorical variable
+#' @param y clusters variable
 #'
 #' @return
 #' @import questionr
@@ -75,16 +75,17 @@ vcramer<-function(x,y){
 }
 
 
-#' Tableau des profils ligne pour une variable qualitative
+#' Table of row profiles for a categorical variable
 #'
-#' @param y variable classe d'appartenance
-#' @param x variable qualitative
+#' @param y clusters variable
+#' @param x categorical variable
 #'
 #' @return
 #' @export
 #'
 #' @examples
 tab.quali.ligne<-function(x,y){
+  #thanks to http://olivier.godechot.free.fr/hoparticle.php?id_art=465
   #tableau de contingence
   tableau=table(y,x)
   #calcul des proportions par ligne, ajout des colonnes total et effectif
@@ -94,16 +95,17 @@ tab.quali.ligne<-function(x,y){
   return(tabligne)
 }
 
-#' Tableau des profils colonnes pour une variable qualitative
+#' Table of column profiles for a categorical variable
 #'
-#' @param y variable classe d'appartenance
-#' @param x variable qualitative
+#' @param y clusters variable
+#' @param x categorical variable
 #'
 #' @return
 #' @export
 #'
 #' @examples
 tab.quali.col<-function(x,y){
+  #thanks to http://olivier.godechot.free.fr/hoparticle.php?id_art=465
   #tableau de contingence
   tableau=table(y,x)
   #calcul des proportions par colonne, ajout des colonnes total et effectif
@@ -114,10 +116,10 @@ tab.quali.col<-function(x,y){
 }
 
 
-#' Tableau des moyennes conditionnelles et % de variance expliquée
+#' Table of conditional means and % explained variance
 #'
-#' @param X une ou plusieurs vars quantitatives
-#' @param y variable classe d'appartenance
+#' @param X one or more quantitative variables
+#' @param y clusters variable
 #'
 #' @return
 #' @importFrom stats aov
@@ -154,9 +156,9 @@ tab.quanti<-function(X,y){
 
 #' Boxplot
 #'
-#' @param df variables explicatives + classes
-#' @param x nom var quanti
-#' @param y nom var classe
+#' @param df dataframe which includes the quantitative variable and the clusters variable
+#' @param x name of the quantitative variable
+#' @param y name of the clusters variable
 #'
 #' @return
 #' @import ggplot2
@@ -168,11 +170,11 @@ boxplot <- function (df, x, y){
     geom_boxplot(outlier.colour="red")
 }
 
-#' Caractérisation d'un groupe avec une variable qualitative
+#' Characterization of a clusters with a qualitative variable
 #'
-#' @param x variable qualitative
-#' @param k nom du cluster choisi
-#' @param y variable classe d'appartenance
+#' @param x qualitative variable
+#' @param k name of the cluster selected
+#' @param y clusters variable
 #'
 #' @return
 #' @export
@@ -218,11 +220,11 @@ boxplot <- function (df, x, y){
   return(res)
 }
 
-#' Caractérisation d'un groupe avec une variable quantitative
+#' Characterization of a cluster with a quantitative variable
 #'
-#' @param x variable quantitative
-#' @param k cluster choisi
-#' @param y variable classe d'appartenance
+#' @param x quantitative variable
+#' @param k name of the cluster selected
+#' @param y clusters variable
 #'
 #' @return
 #' @export
@@ -248,11 +250,11 @@ boxplot <- function (df, x, y){
   return(res)
 }
 
-#' Caractérisation d'un groupe choisi
+#' Characterization of a selected cluster
 #'
-#' @param X toutes les vars
-#' @param y cluster choisi
-#' @param k variables classe d'appartenance
+#' @param X all variables
+#' @param y name of the cluster selected
+#' @param k clusters variable
 #'
 #' @return
 #' @export
@@ -355,9 +357,9 @@ resCluster<-function(X,y,k){
   return(instance)
 }
 
-#' Surcharge de print pour l'affichage de l'objet "cluster"
+#' Overload print function for displaying the "cluster" object
 #'
-#' @param obj instance de la classe cluster
+#' @param obj cluster class instance
 #'
 #' @return
 #' @export
@@ -373,10 +375,10 @@ print.cluster <- function(obj){
 }
 
 
-#' Title
+#' Radar diagram
 #'
-#' @param X
-#' @param y
+#' @param X one or more quantitative variables
+#' @param y clusters variable
 #'
 #' @return
 #' @import ggradar scales tibble dplyr
@@ -384,6 +386,7 @@ print.cluster <- function(obj){
 #'
 #' @examples
 radar<-function(X,y){
+  #thanks to https://github.com/ricardo-bion/ggradar
   #nb de variables
   nc=ncol(X)
   #initialisation
