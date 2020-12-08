@@ -309,12 +309,12 @@ ACP2(X,y,d)
     ## Graphiques des variables 
     ##  
     ## -------------------------------------------------- 
-    ## Description des dimensions crÃ©Ã©es 
+    ## Description des dimensions creees 
     ##  
     ## -------------------------------------------------- 
     ## Visualisation des ellipses de confiance 
     ##  
-    ## Les classes sont reprÃ©sentÃ©es par les couleurs
+    ## Les classes sont representees par les couleurs
     ## Call:
     ## PCA(X = df, scale.unit = TRUE, quali.sup = 1, graph = T) 
     ## 
@@ -379,6 +379,15 @@ well as other descriptive indicators.
 
 We can see graphs, the first one is about observation and the other one
 is about variable.
+
+With acpGraph(), a graph is displayed, it representing the clusters
+according to the first two axes of the PCA.
+
+``` r
+acpGraph(X,y)
+```
+
+![](README_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
 
 ### LDA
 
@@ -495,13 +504,13 @@ ggMatconf function display the confusion matrix under a ggplot graph
 ggMatConf(Obj2c)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
 
 ``` r
 ggMatConf(Obj3c)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-16-2.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-17-2.png)<!-- -->
 
 Thanks to the overload of the print method we can display the different
 attributes of our object.
@@ -567,6 +576,6 @@ compare two clustering results stored in two different objects
 compareRes(Obj2c,Obj2c_bis)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
 
 The output will be a ggplot chart confronting the indicators

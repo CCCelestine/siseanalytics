@@ -1,31 +1,31 @@
-#' Graphique resultat kmeans couple acp
+#' Plot from ACP
 #'
-#' @param vars DataFrame with quantitatives variable
-#' @param reel DataFrame with quantitatives variable
-#' @param resKM clustering results
+#' @param X DataFrame with quantitatives variable
+#' @param y clustering results
 #'
-#' @return
 #' @import factoextra ggplot2 ggpubr
 #' @export
 #'
 #' @examples
-acpGraph <- function(vars,reel,resKM){
-
-  res.pca <- prcomp(vars,  scale = TRUE)
+#' X=data.frame(fromage["calories"],fromage["magnesium"],fromage["lipides"],fromage["retinol"])
+#' y=fromage$groupes.cah
+#' acpGraph(X,y)
+acpGraph <- function(X,y){
+  res.pca <- prcomp(X,  scale = TRUE)
   ind.coord <- as.data.frame(get_pca_ind(res.pca)$coord)
-  ind.coord$cluster <- factor(resKM$cluster)
-  ind.coord$valreel <- as.matrix(reel)
+  ind.coord$centers <- factor(y)
+  ind.coord$individuals <- factor(y)
   eigenvalue <- round(get_eigenvalue(res.pca), 1)
   variance.percent <- eigenvalue$variance.percent
 
   ggscatter(
     ind.coord, x = "Dim.1", y = "Dim.2",
-    color = "cluster", palette = "npg", ellipse = TRUE, ellipse.type = "convex",
-    shape = "valreel", size = 1.5,  legend = "right", ggtheme = theme_bw(),
+    color = "centers", palette = "npg", ellipse = TRUE, ellipse.type = "convex",
+    shape = "individuals", size = 1.5,  legend = "right", ggtheme = theme_bw(),
     xlab = paste0("Dim 1 (", variance.percent[1], "% )" ),
     ylab = paste0("Dim 2 (", variance.percent[2], "% )" )
   ) +
-    stat_mean(aes(color = cluster), size = 4)
+    stat_mean(aes(color = centers), size = 4)
 }
 
 
@@ -189,26 +189,26 @@ ACP2<-function(X,y,d){
   #Realisation ACP
   res.pca<- PCA(df, scale.unit=TRUE , graph=T, quali.sup=1)
   class(res.pca)
-  # CrÃ©ation du graphe des individus
+  # Creation du graphe des individus
   cat("--------------------------------------------------","\n")
   cat("Graphiques des individus","\n","\n")
   plot.PCA(res.pca, axes=c(1, 2), habillage =1, title="Graphe des individus")
 
-  # CrÃ©ation du graphe des variables
+  # Creation du graphe des variables
   cat("--------------------------------------------------","\n")
   cat("Graphiques des variables","\n","\n")
   plot.PCA(res.pca, axes=c(1, 2),choix="var", title="Graphe des variables")
 
-  # Description des diffÃ©rentes dimensions (axes) crÃ©Ã©es
+  # Description des differentes dimensions (axes) creees
   cat("--------------------------------------------------","\n")
-  cat("Description des dimensions crÃ©Ã©es","\n","\n")
+  cat("Description des dimensions creees","\n","\n")
   dimdesc(res.pca, axes=c(1,2))
 
-  # CrÃ©ation des ellipses de confiance
+  # Creation des ellipses de confiance
   cat("--------------------------------------------------","\n")
   cat("Visualisation des ellipses de confiance","\n","\n")
   plotellipses(res.pca)
-  cat("Les classes sont reprÃ©sentÃ©es par les couleurs")
+  cat("Les classes sont representees par les couleurs")
 
   return(summary(res.pca, ncp=d))
 }
@@ -230,7 +230,7 @@ ACP2<-function(X,y,d){
 LDA2<-function(X,y){
   df<- as.data.frame(cbind(y,X))
   mLda <- lda(y~. ,data=df)
-  # Calcul du projetÃ© des individus sur D1 et D2
+  # Calcul du projete des individus sur D1 et D2
   D1 <- mLda$scaling[,1] # vecteur 1
   D2 <- mLda$scaling[,2] # vecteur 2
   Xfromage <- df[-1]

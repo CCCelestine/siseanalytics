@@ -2,20 +2,20 @@
 % Please edit documentation in R/multivarie.R
 \name{acpGraph}
 \alias{acpGraph}
-\title{Graphique resultat kmeans couple acp}
+\title{Plot from ACP}
 \usage{
-acpGraph(vars, reel, resKM)
+acpGraph(X, y)
 }
 \arguments{
-\item{vars}{DataFrame with quantitatives variable}
+\item{X}{DataFrame with quantitatives variable}
 
-\item{reel}{DataFrame with quantitatives variable}
-
-\item{resKM}{clustering results}
-}
-\value{
-
+\item{y}{clustering results}
 }
 \description{
-Graphique resultat kmeans couple acp
+Plot from ACP
+}
+\examples{
+X=data.frame(fromage["calories"],fromage["magnesium"],fromage["lipides"],fromage["retinol"])
+y=fromage$groupes.cah
+acpGraph(X,y)
 }

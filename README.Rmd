@@ -165,6 +165,12 @@ A lot of information results from the execution of the function. We notice the p
 
 We can see graphs, the first one is about observation and the other one is about variable.
 
+With acpGraph(), a graph is displayed, it representing the clusters according to the first two axes of the PCA.
+
+```{r}
+acpGraph(X,y)
+```
+
 ### LDA
 
 It is possible to observe indicators resulting from a linear discriminant analysis such as for example the relative and absolute distribution of the classes or even the conditional means.
