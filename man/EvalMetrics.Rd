@@ -2,18 +2,22 @@
 % Please edit documentation in R/mesuresEval.R
 \name{EvalMetrics}
 \alias{EvalMetrics}
-\title{Création de l'objet "metrics" a partir de deux df contenant les valeurs prédites et réels}
+\title{Creation of the "metrics" object from two df containing the predicted and actual values}
 \usage{
 EvalMetrics(valreel, valpred)
 }
 \arguments{
-\item{valreel}{Un dataframe contenant les classes réels}
+\item{valreel}{A dataframe containing the real classes}
 
-\item{valpred}{Un dataframe contenant les classes prédites par un clustering}
+\item{valpred}{A dataframe containing the classes predicted by a clustering}
 }
 \value{
-Un objet de la classe metrics
+An object of the metrics class
 }
 \description{
-Création de l'objet "metrics" a partir de deux df contenant les valeurs prédites et réels
+Creation of the "metrics" object from two df containing the predicted and actual values
+}
+\examples{
+EvalMetrics(pred_reel_2c$val_reel,pred_reel_2c$val_pred)
+
 }

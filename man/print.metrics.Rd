@@ -2,16 +2,16 @@
 % Please edit documentation in R/mesuresEval.R
 \name{print.metrics}
 \alias{print.metrics}
-\title{Surcharge de print pour l'affichage de l'objet "metrics"}
+\title{Overload of print for displaying the "metrics" object}
 \usage{
 \method{print}{metrics}(obj)
 }
 \arguments{
-\item{obj}{La fonction print affichera la matrice de confusion et les indicateurs lorsque elle recoit un paramètre de type metrics}
+\item{obj}{The print function will display the confusion matrix and the indicators when it receives a parameter of type metrics}
 }
 \value{
 
 }
 \description{
-Surcharge de print pour l'affichage de l'objet "metrics"
+Overload of print for displaying the "metrics" object
 }
