@@ -371,3 +371,35 @@ print.cluster <- function(obj){
   print("Variables qualitatives")
   print(obj$resQuali)
 }
+
+
+#' Title
+#'
+#' @param X
+#' @param y
+#'
+#' @return
+#' @import ggradar scales tibble dplyr
+#' @export
+#'
+#' @examples
+radar<-function(X,y){
+  #nb de variables
+  nc=ncol(X)
+  #initialisation
+  m=c()
+  #calcul des moyennes conditionnelles pour chaque variable
+  for(j in 1:nc){
+    m=rbind(m,tapply(X[,j],y,mean))
+  }
+  #transposition de la matrice
+  data_radar=t(m)
+  #nommage des colonnes
+  colnames(data_radar)=colnames(X)
+  #preparation des données radar
+  radar <- data_radar %>%
+    as_tibble(rownames = "group") %>%
+    mutate_at(vars(-group), rescale)
+  #affciahge du graphique
+  ggradar(radar)
+}
