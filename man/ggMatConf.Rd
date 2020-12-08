@@ -2,16 +2,16 @@
 % Please edit documentation in R/mesuresEval.R
 \name{ggMatConf}
 \alias{ggMatConf}
-\title{Graphique Matrice de confusion}
+\title{Confusion Matrix Graph}
 \usage{
 ggMatConf(objet)
 }
 \arguments{
-\item{objet}{#Variable de type metrics}
+\item{objet}{#Metrics variable}
 }
 \value{
 
 }
 \description{
-Graphique Matrice de confusion
+Confusion Matrix Graph
 }

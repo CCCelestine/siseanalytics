@@ -2,18 +2,18 @@
 % Please edit documentation in R/univarie.r
 \name{khi2}
 \alias{khi2}
-\title{Test du khi deux}
+\title{Chi-Square Test}
 \usage{
 khi2(x, y)
 }
 \arguments{
-\item{x}{variable qualitative}
+\item{x}{categorical variable}
 
-\item{y}{variable classe d'appartenance}
+\item{y}{clusters variable}
 }
 \value{
 
 }
 \description{
-Test du khi deux
+Chi-Square Test
 }

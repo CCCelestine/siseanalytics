@@ -2,18 +2,18 @@
 % Please edit documentation in R/univarie.r
 \name{tab.quali.ligne}
 \alias{tab.quali.ligne}
-\title{Tableau des profils ligne pour une variable qualitative}
+\title{Table of row profiles for a categorical variable}
 \usage{
 tab.quali.ligne(x, y)
 }
 \arguments{
-\item{x}{variable qualitative}
+\item{x}{categorical variable}
 
-\item{y}{variable classe d'appartenance}
+\item{y}{clusters variable}
 }
 \value{
 
 }
 \description{
-Tableau des profils ligne pour une variable qualitative
+Table of row profiles for a categorical variable
 }

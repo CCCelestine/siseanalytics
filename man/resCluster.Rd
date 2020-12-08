@@ -2,20 +2,20 @@
 % Please edit documentation in R/univarie.r
 \name{resCluster}
 \alias{resCluster}
-\title{Caractérisation d'un groupe choisi}
+\title{Characterization of a selected cluster}
 \usage{
 resCluster(X, y, k)
 }
 \arguments{
-\item{X}{toutes les vars}
+\item{X}{all variables}
 
-\item{y}{cluster choisi}
+\item{y}{name of the cluster selected}
 
-\item{k}{variables classe d'appartenance}
+\item{k}{clusters variable}
 }
 \value{
 
 }
 \description{
-Caractérisation d'un groupe choisi
+Characterization of a selected cluster
 }

@@ -2,16 +2,18 @@
 % Please edit documentation in R/univarie.r
 \name{radar}
 \alias{radar}
-\title{Title}
+\title{Radar diagram}
 \usage{
 radar(X, y)
 }
 \arguments{
-\item{y}{}
+\item{X}{one or more quantitative variables}
+
+\item{y}{clusters variable}
 }
 \value{
 
 }
 \description{
-Title
+Radar diagram
 }

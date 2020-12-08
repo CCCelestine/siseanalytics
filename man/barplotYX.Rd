@@ -2,20 +2,20 @@
 % Please edit documentation in R/univarie.r
 \name{barplotYX}
 \alias{barplotYX}
-\title{Diagramme à barres Y en fonction de X}
+\title{Barplot Y versus X}
 \usage{
 barplotYX(df, x, y)
 }
 \arguments{
-\item{df}{dataframe contenant la variable numerique et la variable classe d'appartenance}
+\item{df}{dataframe which includes the categorical variable and the clusters variable}
 
-\item{x}{nom de la variable catégorielle}
+\item{x}{name of the categorical variable}
 
-\item{y}{nom de la variable classe d'appartenance}
+\item{y}{name of the clusters variable}
 }
 \value{
 
 }
 \description{
-Diagramme à barres Y en fonction de X
+Barplot Y versus X
 }

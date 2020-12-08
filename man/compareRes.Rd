@@ -2,18 +2,18 @@
 % Please edit documentation in R/mesuresEval.R
 \name{compareRes}
 \alias{compareRes}
-\title{Fonction qui permet de comparer le resultat de deux clustering}
+\title{Function which allows to compare the result of two clustering}
 \usage{
 compareRes(object1, object2)
 }
 \arguments{
-\item{object1}{Le premier objet suite à un premier clustering}
+\item{object1}{The first object following a first clustering}
 
-\item{object2}{Le second objet suite à un premier clustering}
+\item{object2}{The second object following a second clustering}
 }
 \value{
 
 }
 \description{
-Fonction qui permet de comparer le resultat de deux clustering
+Function which allows to compare the result of two clustering
 }

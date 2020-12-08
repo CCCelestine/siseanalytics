@@ -7,11 +7,11 @@
 boxplot(df, x, y)
 }
 \arguments{
-\item{df}{variables explicatives + classes}
+\item{df}{dataframe which includes the quantitative variable and the clusters variable}
 
-\item{x}{nom var quanti}
+\item{x}{name of the quantitative variable}
 
-\item{y}{nom var classe}
+\item{y}{name of the clusters variable}
 }
 \value{
 

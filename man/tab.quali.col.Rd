@@ -2,18 +2,18 @@
 % Please edit documentation in R/univarie.r
 \name{tab.quali.col}
 \alias{tab.quali.col}
-\title{Tableau des profils colonnes pour une variable qualitative}
+\title{Table of column profiles for a categorical variable}
 \usage{
 tab.quali.col(x, y)
 }
 \arguments{
-\item{x}{variable qualitative}
+\item{x}{categorical variable}
 
-\item{y}{variable classe d'appartenance}
+\item{y}{clusters variable}
 }
 \value{
 
 }
 \description{
-Tableau des profils colonnes pour une variable qualitative
+Table of column profiles for a categorical variable
 }

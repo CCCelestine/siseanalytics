@@ -9,7 +9,6 @@ A data frame with 357 rows and 2 variables:
 \describe{
 \item{val_pred}{val_pred}
 \item{val_reel}{val_reel}
-...
 }
 }
 \usage{
