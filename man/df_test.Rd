@@ -13,7 +13,7 @@ A data frame with 357 rows and 8 variables:
 \item{poids}{the person's weight in kg}
 \item{pointure}{The shoe size}
 \item{sexe}{Man or woman}
-\item{sportsport}{practiced by the individual}
+\item{sport}{practiced by the individual}
 \item{val_parent}{parent target value}
 }
 }

@@ -14,7 +14,7 @@
 \item{y}{clusters variable}
 }
 \value{
-
+test value, plg, pl for each modality
 }
 \description{
 Characterization of a clusters with a qualitative variable

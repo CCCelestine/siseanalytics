@@ -12,8 +12,11 @@ vcramer(x, y)
 \item{y}{clusters variable}
 }
 \value{
-
+a float
 }
 \description{
 Cramer's V
+}
+\examples{
+vcramer(df_test$sexe,df_test$val_pred)
 }

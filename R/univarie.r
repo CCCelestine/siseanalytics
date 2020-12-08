@@ -4,11 +4,11 @@
 #' @param x name of the categorical variable
 #' @param y name of the clusters variable
 #'
-#' @return
 #' @import ggplot2
 #' @export
 #'
 #' @examples
+#' barplotYX(df_test, "sexe", "val_pred")
 barplotYX <- function (df, x, y){
   ggplot(df, aes_string(x = x, fill = y)) +
     geom_bar() +
@@ -23,11 +23,11 @@ barplotYX <- function (df, x, y){
 #' @param x name of the categorical variable
 #' @param y name of the clusters variable
 #'
-#' @return
 #' @import ggplot2
 #' @export
 #'
 #' @examples
+#' barplotXY(df_test, "sexe", "val_pred")
 barplotXY <- function (df, x, y){
   ggplot(df, aes_string(x = y, fill = x)) +
     geom_bar(position=position_dodge()) +
@@ -41,11 +41,12 @@ barplotXY <- function (df, x, y){
 #' @param x categorical variable
 #' @param y clusters variable
 #'
-#' @return
+#' @return A list with class "htest"
 #' @importFrom stats chisq.test
 #' @export
 #'
 #' @examples
+#' khi2(df_test$sexe,df_test$val_pred)
 khi2<-function(x,y){
   #tableau de contingence
   tableau=table(x,y)
@@ -60,11 +61,12 @@ khi2<-function(x,y){
 #' @param x categorical variable
 #' @param y clusters variable
 #'
-#' @return
+#' @return a float
 #' @import questionr
 #' @export
 #'
 #' @examples
+#' vcramer(df_test$sexe,df_test$val_pred)
 vcramer<-function(x,y){
   #tableau de contingence
   tableau=table(x,y)
@@ -80,10 +82,11 @@ vcramer<-function(x,y){
 #' @param y clusters variable
 #' @param x categorical variable
 #'
-#' @return
+#' @return table
 #' @export
 #'
 #' @examples
+#' tab.quali.ligne(df_test$val_pred,df_test$sexe)
 tab.quali.ligne<-function(x,y){
   #thanks to http://olivier.godechot.free.fr/hoparticle.php?id_art=465
   #tableau de contingence
@@ -100,10 +103,11 @@ tab.quali.ligne<-function(x,y){
 #' @param y clusters variable
 #' @param x categorical variable
 #'
-#' @return
+#' @return table
 #' @export
 #'
 #' @examples
+#' tab.quali.col(df_test$val_pred,df_test$sexe)
 tab.quali.col<-function(x,y){
   #thanks to http://olivier.godechot.free.fr/hoparticle.php?id_art=465
   #tableau de contingence
@@ -121,11 +125,14 @@ tab.quali.col<-function(x,y){
 #' @param X one or more quantitative variables
 #' @param y clusters variable
 #'
-#' @return
+#' @return table
 #' @importFrom stats aov
 #' @export
 #'
 #' @examples
+#' df_test=as.data.frame(df_test)
+#' data_quanti=df_test[,3:5]
+#' tab.quanti(data_quanti,df_test$val_pred)
 tab.quanti<-function(X,y){
   #nb de variables quantitatives
   nc=ncol(X)
@@ -160,11 +167,11 @@ tab.quanti<-function(X,y){
 #' @param x name of the quantitative variable
 #' @param y name of the clusters variable
 #'
-#' @return
 #' @import ggplot2
 #' @export
 #'
 #' @examples
+#' boxplot(df_test, "val_pred", "taille")
 boxplot <- function (df, x, y){
   ggplot(df, aes_string(x=x, y=y, fill=x))+
     geom_boxplot(outlier.colour="red")
@@ -176,10 +183,8 @@ boxplot <- function (df, x, y){
 #' @param k name of the cluster selected
 #' @param y clusters variable
 #'
-#' @return
+#' @return test value, plg, pl for each modality
 #' @export
-#'
-#' @examples
 .vt.quali<-function(x,k,y){
   #transtypage chaine de caracteres
   x=as.character(x)
@@ -226,10 +231,8 @@ boxplot <- function (df, x, y){
 #' @param k name of the cluster selected
 #' @param y clusters variable
 #'
-#' @return
+#' @return test value
 #' @export
-#'
-#' @examples
 .vt.quanti<-function(x,k,y){
   #creation d'un dataframe
   df=as.data.frame(cbind(x,y))
@@ -256,10 +259,12 @@ boxplot <- function (df, x, y){
 #' @param y name of the cluster selected
 #' @param k clusters variable
 #'
-#' @return
+#' @return object with class S3 "cluster"
 #' @export
 #'
 #' @examples
+#' data=as.data.frame(df_test[,-c(1,2)])
+#' resCluster(data,df_test$val_pred,"grand")
 resCluster<-function(X,y,k){
   #nombre de variables
   n=ncol(X)
@@ -361,10 +366,7 @@ resCluster<-function(X,y,k){
 #'
 #' @param obj cluster class instance
 #'
-#' @return
 #' @export
-#'
-#' @examples
 print.cluster <- function(obj){
   print(paste("Caracterisation du cluster k =",obj$nomCluster))
   print(paste(obj$prop,"% de la population"))
@@ -380,11 +382,13 @@ print.cluster <- function(obj){
 #' @param X one or more quantitative variables
 #' @param y clusters variable
 #'
-#' @return
 #' @import ggradar scales tibble dplyr
 #' @export
 #'
 #' @examples
+#' df_test=as.data.frame(df_test)
+#' data_quanti=df_test[,3:5]
+#' radar(data_quanti,df_test$val_pred)
 radar<-function(X,y){
   #thanks to https://github.com/ricardo-bion/ggradar
   #nb de variables

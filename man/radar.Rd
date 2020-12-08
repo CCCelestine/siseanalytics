@@ -11,9 +11,11 @@ radar(X, y)
 
 \item{y}{clusters variable}
 }
-\value{
-
-}
 \description{
 Radar diagram
+}
+\examples{
+df_test=as.data.frame(df_test)
+data_quanti=df_test[,3:5]
+radar(data_quanti,df_test$val_pred)
 }

@@ -9,9 +9,6 @@
 \arguments{
 \item{obj}{The print function will display the confusion matrix and the indicators when it receives a parameter of type metrics}
 }
-\value{
-
-}
 \description{
 Overload of print for displaying the "metrics" object
 }

@@ -12,8 +12,11 @@ khi2(x, y)
 \item{y}{clusters variable}
 }
 \value{
-
+A list with class "htest"
 }
 \description{
 Chi-Square Test
+}
+\examples{
+khi2(df_test$sexe,df_test$val_pred)
 }

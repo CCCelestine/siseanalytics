@@ -12,8 +12,11 @@ tab.quali.ligne(x, y)
 \item{y}{clusters variable}
 }
 \value{
-
+table
 }
 \description{
 Table of row profiles for a categorical variable
+}
+\examples{
+tab.quali.ligne(df_test$val_pred,df_test$sexe)
 }

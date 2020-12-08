@@ -13,9 +13,9 @@ barplotXY(df, x, y)
 
 \item{y}{name of the clusters variable}
 }
-\value{
-
-}
 \description{
 Barplot X versus Y
+}
+\examples{
+barplotXY(df_test, "sexe", "val_pred")
 }

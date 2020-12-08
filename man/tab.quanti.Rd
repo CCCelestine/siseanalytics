@@ -12,8 +12,13 @@ tab.quanti(X, y)
 \item{y}{clusters variable}
 }
 \value{
-
+table
 }
 \description{
 Table of conditional means and \% explained variance
+}
+\examples{
+df_test=as.data.frame(df_test)
+data_quanti=df_test[,3:5]
+tab.quanti(data_quanti,df_test$val_pred)
 }

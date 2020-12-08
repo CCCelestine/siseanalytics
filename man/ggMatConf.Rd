@@ -9,9 +9,6 @@ ggMatConf(objet)
 \arguments{
 \item{objet}{#Metrics variable}
 }
-\value{
-
-}
 \description{
 Confusion Matrix Graph
 }

@@ -13,9 +13,9 @@ boxplot(df, x, y)
 
 \item{y}{name of the clusters variable}
 }
-\value{
-
-}
 \description{
 Boxplot
+}
+\examples{
+boxplot(df_test, "val_pred", "taille")
 }

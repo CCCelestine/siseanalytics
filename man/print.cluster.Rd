@@ -9,9 +9,6 @@
 \arguments{
 \item{obj}{cluster class instance}
 }
-\value{
-
-}
 \description{
 Overload print function for displaying the "cluster" object
 }

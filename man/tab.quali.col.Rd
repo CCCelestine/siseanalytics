@@ -12,8 +12,11 @@ tab.quali.col(x, y)
 \item{y}{clusters variable}
 }
 \value{
-
+table
 }
 \description{
 Table of column profiles for a categorical variable
+}
+\examples{
+tab.quali.col(df_test$val_pred,df_test$sexe)
 }

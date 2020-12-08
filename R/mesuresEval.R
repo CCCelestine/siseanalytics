@@ -10,18 +10,18 @@
 #' EvalMetrics(pred_reel_2c$val_reel,pred_reel_2c$val_pred)
 #'
 EvalMetrics <- function(valreel,valpred){
-  #Création des variables pour la construction de notre class
+  #Creation des variables pour la construction de notre class
   valpred <- as.factor(valpred)
   valreel <- as.factor(valreel)
-  #On récupère les taille des vecteurs et le nombre de valeur que peut prendre la variable à trouver
+  #On recupere les taille des vecteurs et le nombre de valeur que peut prendre la variable a trouver
   a <- length(valpred)
   b <- length(valreel)
   c <- length(levels(valpred))
   d <- length(levels(valreel))
-  # On vérifie certaines conditions avant de donner les attributs à notre objet
-  if (a !=b){stop("Les deux vecteurs rentrée n'ont pas la même taille")}
-  if (c !=d){stop("Les deux vecteurs ne prennet pas le même nombre de valeur")}
-  if (c < 2 ){stop("Il doit avoir au moins deux classes pour la variable prédites ")}
+  # On verifie certaines conditions avant de donner les attributs a notre objet
+  if (a !=b){stop("Les deux vecteurs rentree n'ont pas la mame taille")}
+  if (c !=d){stop("Les deux vecteurs ne prennet pas le mame nombre de valeur")}
+  if (c < 2 ){stop("Il doit avoir au moins deux classes pour la variable predites ")}
 
   #On instancie la class metrics
   instance <- list()
@@ -31,7 +31,7 @@ EvalMetrics <- function(valreel,valpred){
 
   #Selon le nombre de valeur que prendre la variable d'appartenance aux classes
   if(c == 2){
-    #Calcul des éléments de la matrice de confusion
+    #Calcul des elements de la matrice de confusion
     data <- instance$mc
     positive <- rownames(data)[1]
     negative <- instance$nomclass[!(instance$nomclass %in% positive)]
@@ -40,22 +40,22 @@ EvalMetrics <- function(valreel,valpred){
     fp <- data[positive,negative]
     fn <- data[negative,positive]
 
-    #On crée un tableau avec les indicateurs calculé sur la matrice de confusion
-    ind <- matrix(NA,nrow=7,ncol=1,dimnames = list(c("Erreur","Accuracy","Précision","Sensibilite", "Specificity", "Balanced Accuracy", "F1"),
+    #On cree un tableau avec les indicateurs calcule sur la matrice de confusion
+    ind <- matrix(NA,nrow=7,ncol=1,dimnames = list(c("Erreur","Accuracy","Precision","Sensibilite", "Specificity", "Balanced Accuracy", "F1"),
                                                    c("Valeur")))
 
-    ind["Erreur",] <- 1.0-sum(diag(instance$mc))/sum(instance$mc) #erreur:Performance globale du modèle
-    ind["Accuracy",] <- sum(diag(instance$mc))/sum(instance$mc) #Accuracy:Performance globale du modèle
+    ind["Erreur",] <- 1.0-sum(diag(instance$mc))/sum(instance$mc) #erreur:Performance globale du modele
+    ind["Accuracy",] <- sum(diag(instance$mc))/sum(instance$mc) #Accuracy:Performance globale du modele
 
-    ind["Précision",] <- (sum(tp))/(sum(tp+fp)) #Précision : À quel point les prédictions positives sont précises
+    ind["Precision",] <- (sum(tp))/(sum(tp+fp)) #Precision : a quel point les predictions positives sont precises
     ind["Sensibilite",] <- (sum(tp))/(sum(tp+fn))#Ou rappel : Couverture des observations vraiment positives
-    ind["Specificity",] <- (sum(tn))/(sum(tn+fp))#Spécificité : Couverture des observations vraiment négatives
-    ind["Balanced Accuracy",] <- (ind["Sensibilite",]+ind["Specificity",])/2 #précision équilibrée : Performance globale du modèle,lorsque les classes sont déséquilibrées
-    ind["F1",]<- (2*tp)/(2*tp+fp+fn)#Indicateur hybride utilisé pour les classes non-balancées
+    ind["Specificity",] <- (sum(tn))/(sum(tn+fp))#Specificite : Couverture des observations vraiment negatives
+    ind["Balanced Accuracy",] <- (ind["Sensibilite",]+ind["Specificity",])/2 #precision equilibree : Performance globale du modele,lorsque les classes sont desequilibrees
+    ind["F1",]<- (2*tp)/(2*tp+fp+fn)#Indicateur hybride utilise pour les classes non-balancees
     instance$indicateurs <- ind
   } else {
     # Pour le cas ou le nombre de class > 2 alors on calcul les indicateurs pour chaque classe
-    ind <- matrix(NA,nrow=7,ncol=instance$nbclasse,dimnames = list(c("Erreur","Accuracy","Précision","Sensibilite", "Specificity", "Balanced Accuracy", "F1"),instance$nomclass))
+    ind <- matrix(NA,nrow=7,ncol=instance$nbclasse,dimnames = list(c("Erreur","Accuracy","Precision","Sensibilite", "Specificity", "Balanced Accuracy", "F1"),instance$nomclass))
     j=1
     ind["Erreur",] <- 1.0-sum(diag(instance$mc))/sum(instance$mc)
     ind["Accuracy",] <- sum(diag(instance$mc))/sum(instance$mc)
@@ -68,18 +68,18 @@ EvalMetrics <- function(valreel,valpred){
       fn <- rs[i] - tp
       tn <- sum(data) - (tp+fp+fn)
 
-      ind["Précision",j] <- (sum(tp))/(sum(tp+fp))
+      ind["Precision",j] <- (sum(tp))/(sum(tp+fp))
       ind["Sensibilite",j] <- (sum(tp))/(sum(tp+fn))
       ind["Specificity",j] <- (sum(tn))/(sum(tn+fp))
       ind["Balanced Accuracy",j] <- (ind["Sensibilite",j]+ind["Specificity",j])/2
       ind["F1",j]<- (2*tp)/(2*tp+fp+fn)
       j=j+1
     }
-    #On récupère la matrice pour le mettre dans l'attribut indicateurs de l'objet
+    #On recupere la matrice pour le mettre dans l'attribut indicateurs de l'objet
     instance$indicateurs <- ind
   }
   class(instance) <- "metrics"
-  #La fonction renvoie notre instance de manirère à créer un objet de type metrics
+  #La fonction renvoie notre instance de manirere a creer un objet de type metrics
   return(instance)
 }
 
@@ -88,7 +88,6 @@ EvalMetrics <- function(valreel,valpred){
 #'
 #' @param obj The print function will display the confusion matrix and the indicators when it receives a parameter of type metrics
 #'
-#' @return
 #' @export
 #'
 #' @examples
@@ -106,7 +105,6 @@ print.metrics <- function(obj){
 #' @param object1 The first object following a first clustering
 #' @param object2 The second object following a second clustering
 #'
-#' @return
 #' @import ggplot2 ggpubr
 #' @export
 #'
@@ -115,7 +113,7 @@ print.metrics <- function(obj){
 #' Obj2c_bis <- EvalMetrics(pred_reel_2c_bis$val_reel,pred_reel_2c_bis$val_pred)
 #' compareRes(Obj2c,Obj2c_bis)
 compareRes <- function(object1,object2){
-  if (object1$nbclasse != object2$nbclasse){stop("Les deux objets n'ont pas le même nombre de classe")}
+  if (object1$nbclasse != object2$nbclasse){stop("Les deux objets n'ont pas le mame nombre de classe")}
   if(object1$nbclasse == 2){
     temp1<-as.data.frame(object1$indicateurs)
     temp2 <-as.data.frame(object2$indicateurs)
@@ -145,7 +143,6 @@ compareRes <- function(object1,object2){
 #'
 #' @param objet #Metrics variable
 #'
-#' @return
 #' @import dplyr ggplot2
 #' @export
 #'
@@ -156,7 +153,7 @@ ggMatConf <- function(objet){
 
   # On stock la matrice de confusion dans une variable
   table <- data.frame(objet$mc)
-  # Grâce a dplyr on ajoute une colonne pour les bonnes prédictions et les mauvaises
+  # Grace a dplyr on ajoute une colonne pour les bonnes predictions et les mauvaises
   # On ajoute aussi une colonne prop pour calculer la proportion
   plotTable <- table %>%
     mutate(goodbad = ifelse(table$valpred == table$valreel, "good", "bad")) %>%

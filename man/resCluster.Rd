@@ -14,8 +14,12 @@ resCluster(X, y, k)
 \item{k}{clusters variable}
 }
 \value{
-
+object with class S3 "cluster"
 }
 \description{
 Characterization of a selected cluster
+}
+\examples{
+data=as.data.frame(df_test[,-c(1,2)])
+resCluster(data,df_test$val_pred,"grand")
 }

@@ -14,7 +14,7 @@
 \item{y}{clusters variable}
 }
 \value{
-
+test value
 }
 \description{
 Characterization of a cluster with a quantitative variable

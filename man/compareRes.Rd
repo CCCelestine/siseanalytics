@@ -11,9 +11,6 @@ compareRes(object1, object2)
 
 \item{object2}{The second object following a second clustering}
 }
-\value{
-
-}
 \description{
 Function which allows to compare the result of two clustering
 }
