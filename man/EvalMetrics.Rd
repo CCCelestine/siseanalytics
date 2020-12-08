@@ -17,3 +17,7 @@ An object of the metrics class
 \description{
 Creation of the "metrics" object from two df containing the predicted and actual values
 }
+\examples{
+EvalMetrics(pred_reel_2c$val_reel,pred_reel_2c$val_pred)
+
+}
